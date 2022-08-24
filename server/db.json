@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "email": "zain@email.com",
+      "password": "$2a$10$cVLu4qXinyEo9KKZ7eyA5ORmL/rqdxSKm3hgEtd5od/21LJYCqa5e",
+      "id": 1,
+      "role": 0
+    }
+  ],
+  "bikes": [
+    {
+      "id": 1,
+      "model": "Yamaha X100",
+      "color": "Black",
+      "location": "Saharanpur",
+      "Rating": "4.3",
+      "available": false
+    },
+    {
+      "model": "Yamaha X200",
+      "color": "Red",
+      "location": "Lucknow",
+      "Rating": "4",
+      "available": true,
+      "id": 2
+    }
+  ],
+  "bookings": [
+    {
+        "id": 1,
+        "bikeId": 2,
+        "start": 1661425200000,
+        "end": 1661493600000
+    }
+  ],
+  "ratings": [
+    {
+        "id": 1,
+        "bikeId": 1,
+        "userId": 1
+    }
+  ]
+}
