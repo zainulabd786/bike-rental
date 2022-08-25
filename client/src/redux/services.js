@@ -34,7 +34,15 @@ export const brApi = createApi({
         body: data
       }),
       invalidatesTags: ['User']
-    })
+    }),
+    updateUser: builder.mutation({
+      query: data => ({
+        url: `/users/${data.id}`,
+        method: 'PATCH',
+        body: data
+      }),
+      invalidatesTags: ['User']
+    }),
   }),
 })
 
@@ -44,5 +52,6 @@ export const {
   useLoginMutation,
   useGetAllUsersQuery,
   useGetUserQuery,
-  useSignUpMutation
+  useSignUpMutation,
+  useUpdateUserMutation
 } = brApi
