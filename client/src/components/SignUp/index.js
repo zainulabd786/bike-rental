@@ -41,7 +41,7 @@ const SignUp = props => {
     }
 
     if (loggedIn) {
-        return <Navigate to={location?.state?.from || "/"} />;
+        return <Navigate to={location?.state?.from} replace />;
     }
 
     return (

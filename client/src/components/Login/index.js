@@ -37,7 +37,7 @@ const Login = props => {
   }, [error, isLoading, data, isError, status, isSuccess, dispatch])
 
   if (loggedIn) {
-    return <Navigate to={location?.state?.from || "/"} />;
+    return <Navigate to={location?.state?.from} replace />;
   }
 
   return <div className='d-flex justify-content-center'>

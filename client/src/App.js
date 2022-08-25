@@ -12,23 +12,24 @@ import userSlice from 'redux/slices/user';
 import jwt_decode from "jwt-decode";
 import { useGetUserQuery } from 'redux/services'
 
-import PrivateRoutes from './components/PrivateRoutes';
+import PrivateRoute from './components/PrivateRoute';
 import Home from 'components/Home'
 import Login from 'components/Login'
 import Header from 'components/Header'
 import SignUp from 'components/SignUp'
+import { Users, Listings, Bookings } from 'components/Manage'
 
 
 function App() {
   const {
     common: { loading, message },
-    user: { loggedIn },
+    user: { userInfo },
   } = useSelector((state) => state);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken');
   const { email = "" } = accessToken ? jwt_decode(accessToken) : {};
-
+  const loggedIn =  !!accessToken;
   const userQueryResults = useGetUserQuery(email, { skip: email === "" });
 
   useEffect(() => {
@@ -59,9 +60,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
-            <Route element={<Home />} path="/" exact />
+          <Route element={<PrivateRoute isAllowed={loggedIn} />}>
+            <Route path="/" element={<Home />} />
           </Route>
+          <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo?.role === 0} />} > {/** Manager Routes */}
+              <Route path="/manage/users" element={<Users/>} />
+              <Route path="/manage/listings" element={<Listings/>} />
+              <Route path="/manage/bookings" element={<Bookings/>} />
+            </Route>
         </Routes>
       </Router>
     </div>
