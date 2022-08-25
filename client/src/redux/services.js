@@ -9,15 +9,31 @@ export const brApi = createApi({
   endpoints: (builder) => ({
     login: builder.mutation({
         query: loginData => ({
-            url: '/login',
+            url: '/signin',
             method: 'POST',
             body: loginData    
         }),
         invalidatesTags: ['User']
+    }),
+    getUser: builder.query({
+      query: email => `/users?email=${email}`,
+      providesTags: ['User'],
+      transformResponse: ([response]) => {
+        delete response.password;
+        return response;
+      }
+    }),
+    getAllUsers: builder.query({
+      query: () => "/users",
+      providesTags: ['User']
     }),
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useLoginMutation } = brApi
+export const { 
+  useLoginMutation,
+  useGetAllUsersQuery,
+  useGetUserQuery
+} = brApi

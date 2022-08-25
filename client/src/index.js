@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { SnackbarProvider } from 'notistack';
 import './index.css';
 
 const container = document.getElementById('root');
@@ -12,7 +13,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>
 );
