@@ -16,6 +16,7 @@ import PrivateRoutes from './components/PrivateRoutes';
 import Home from 'components/Home'
 import Login from 'components/Login'
 import Header from 'components/Header'
+import SignUp from 'components/SignUp'
 
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
     if (!loading && message.variant && message.text) {
       enqueueSnackbar(message.text, { variant: message.variant });
     }
-  }, [loading, message, accessToken,  enqueueSnackbar, dispatch]);
+  }, [loading, message, accessToken, enqueueSnackbar, dispatch]);
 
   useEffect(() => {
     if (loggedIn && userQueryResults.data) {
@@ -57,6 +58,7 @@ function App() {
         {loggedIn && <Header />}
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
             <Route element={<Home />} path="/" exact />
           </Route>

@@ -1,5 +1,5 @@
 import { memo, useCallback, useState, useEffect } from 'react';
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, Link } from "react-router-dom";
 import { TextField, Button } from '@mui/material'
 import { useLoginMutation } from 'redux/services'
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,12 +7,12 @@ import commonSlice from 'redux/slices/common';
 import './style.scss'
 
 const Login = props => {
-  const [login, { error, data, isLoading, status, isError }] = useLoginMutation();
+  const [login, { error, data, isLoading, status, isError, isSuccess }] = useLoginMutation();
   const [inputVals, setInputVals] = useState({
     email: "",
     password: ""
   });
-  const {loggedIn} = useSelector(state => state.user);
+  const { loggedIn } = useSelector(state => state.user);
   const location = useLocation();
   const dispatch = useDispatch();
   const handleInputChange = e => {
@@ -23,20 +23,18 @@ const Login = props => {
   const handleSubmit = useCallback(e => {
     e.preventDefault();
     login(inputVals)
-  },[login, inputVals])
+  }, [login, inputVals])
 
   useEffect(() => {
     dispatch(commonSlice.actions.setLoading(isLoading));
-    if(data){
+    if (data && isSuccess) {
       localStorage.setItem("accessToken", data.accessToken)
+    } else if (!isLoading && isError && status === "rejected") {
+      dispatch(commonSlice.actions.setMessage({ text: "Invalid Username or Password!", variant: 'error' }))
+    } else {
+      dispatch(commonSlice.actions.setMessage({ text: "", variant: '' }))
     }
-    if(!isLoading && isError && status === "rejected") {
-      dispatch(commonSlice.actions.setMessage({text: "Invalid Username or Password!", variant: 'error'}))
-    } else{
-      dispatch(commonSlice.actions.setMessage({text: "", variant: ''}))
-    }
-  
-  },[error, isLoading, data, isError, status, dispatch])
+  }, [error, isLoading, data, isError, status, isSuccess, dispatch])
 
   if (loggedIn) {
     return <Navigate to={location?.state?.from || "/"} />;
@@ -68,10 +66,12 @@ const Login = props => {
       <Button
         type='submit'
         size="small"
+        variant='outlined'
         disabled={Object.values(inputVals).includes("")}
       >
         Login
       </Button>
+      <Link to="/signup">Sign up</Link>
     </form>
   </div>
 }

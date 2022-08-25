@@ -8,12 +8,12 @@ export const brApi = createApi({
   tagTypes: ['User'],
   endpoints: (builder) => ({
     login: builder.mutation({
-        query: loginData => ({
-            url: '/signin',
-            method: 'POST',
-            body: loginData    
-        }),
-        invalidatesTags: ['User']
+      query: loginData => ({
+        url: '/signin',
+        method: 'POST',
+        body: loginData
+      }),
+      invalidatesTags: ['User']
     }),
     getUser: builder.query({
       query: email => `/users?email=${email}`,
@@ -27,13 +27,22 @@ export const brApi = createApi({
       query: () => "/users",
       providesTags: ['User']
     }),
+    signUp: builder.mutation({
+      query: data => ({
+        url: '/signup',
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['User']
+    })
   }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { 
+export const {
   useLoginMutation,
   useGetAllUsersQuery,
-  useGetUserQuery
+  useGetUserQuery,
+  useSignUpMutation
 } = brApi

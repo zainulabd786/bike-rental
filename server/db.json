@@ -3,8 +3,16 @@
     {
       "email": "zainulabd786@gmail.com",
       "password": "$2a$10$cVLu4qXinyEo9KKZ7eyA5ORmL/rqdxSKm3hgEtd5od/21LJYCqa5e",
+      "name": "Zainul Abideen",
       "id": 1,
       "role": 0
+    },
+    {
+      "email": "waeez@gmail.com",
+      "password": "$2a$10$bmWARnKy3ERcoNnjL/pWFOMiAo98ULM3cgztm9FR5ztEhlvM36jEO",
+      "name": "Waeez",
+      "id": 2,
+      "role": 1
     }
   ],
   "bikes": [
@@ -27,17 +35,17 @@
   ],
   "bookings": [
     {
-        "id": 1,
-        "bikeId": 2,
-        "start": 1661425200000,
-        "end": 1661493600000
+      "id": 1,
+      "bikeId": 2,
+      "start": 1661425200000,
+      "end": 1661493600000
     }
   ],
   "ratings": [
     {
-        "id": 1,
-        "bikeId": 1,
-        "userId": 1
+      "id": 1,
+      "bikeId": 1,
+      "userId": 1
     }
   ]
 }
