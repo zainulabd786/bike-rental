@@ -23,13 +23,12 @@ import { Users, Listings, Bookings } from 'components/Manage'
 function App() {
   const {
     common: { loading, message },
-    user: { userInfo },
+    user: { userInfo, loggedIn },
   } = useSelector((state) => state);
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken');
   const { email = "" } = accessToken ? jwt_decode(accessToken) : {};
-  const loggedIn =  !!accessToken;
   const userQueryResults = useGetUserQuery(email, { skip: email === "" });
 
   useEffect(() => {
@@ -63,7 +62,7 @@ function App() {
           <Route element={<PrivateRoute isAllowed={loggedIn} />}>
             <Route path="/" element={<Home />} />
           </Route>
-          <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo?.role === 0} />} > {/** Manager Routes */}
+          <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === 0: userInfo} />} > {/** Manager Routes */}
               <Route path="/manage/users" element={<Users/>} />
               <Route path="/manage/listings" element={<Listings/>} />
               <Route path="/manage/bookings" element={<Bookings/>} />

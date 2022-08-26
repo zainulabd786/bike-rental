@@ -1,4 +1,5 @@
-import { Outlet, Navigate, useLocation } from 'react-router-dom'
+import { memo } from 'react';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 
 const PrivateRoutes = ({
   isAllowed,
@@ -6,12 +7,13 @@ const PrivateRoutes = ({
   children,
 }) => {
   const location = useLocation();
-  console.log("isAllowed", isAllowed)
-  if (!isAllowed) {
+  
+  if(isAllowed === undefined) return null
+  else if (isAllowed === false) 
     return <Navigate to={redirectPath} state={{ from: location }} replace />;
-  }
+  
 
   return children ? children : <Outlet />;
 };
 
-export default PrivateRoutes
+export default memo(PrivateRoutes)
