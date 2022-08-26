@@ -2,7 +2,7 @@ import { memo, useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import {
     useGetBikeQuery,
-    useGetBookingQuery,
+    useGetBookingsQuery,
     useAddBookingMutation
 } from 'redux/services';
 import { Scheduler } from "@aldabil/react-scheduler";
@@ -12,11 +12,11 @@ import commonSlice from 'redux/slices/common';
 const Book = props => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { userInfo = {} } = useSelector(state => state.user);
+    const { userInfo } = useSelector(state => state.user) || {};
     const [bookings, setBookings] = useState([]);
 
     const getBikeQueryResults = useGetBikeQuery(id);
-    const getBookingQueryResults = useGetBookingQuery(id);
+    const getBookingsQueryResults = useGetBookingsQuery({ queryBy: 'bikeId', value: id });
     const [addBooking, addBookingMutationResponse] = useAddBookingMutation();
 
     useEffect(() => {
@@ -29,16 +29,16 @@ const Book = props => {
     }, [addBookingMutationResponse, dispatch]);
 
     useEffect(() => {
-        if (getBookingQueryResults.isSuccess && getBookingQueryResults.data) {
-            setBookings(getBookingQueryResults.data)
+        if (getBookingsQueryResults.isSuccess && getBookingsQueryResults.data) {
+            setBookings(getBookingsQueryResults.data)
         }
-    }, [getBookingQueryResults]);
+    }, [getBookingsQueryResults]);
 
     const handleCreateBooking = useCallback(async (event) => {
         const { start, end } = event
         const payload = {
             title: 'Booked',
-            userId: userInfo.id,
+            userId: userInfo?.id,
             bikeId: parseInt(id),
             start: new Date(start).valueOf(),
             end: new Date(end).valueOf()
@@ -53,7 +53,7 @@ const Book = props => {
     return <div>
         <div className="text-danger">
             {getBikeQueryResults.isError && getBikeQueryResults.error?.data}
-            {getBookingQueryResults.isError && getBookingQueryResults.error?.data}
+            {getBookingsQueryResults.isError && getBookingsQueryResults.error?.data}
         </div>
         <div>
             <h1>
@@ -62,7 +62,7 @@ const Book = props => {
             {/* TODO: Disable previous Button */}
             <div className="scheculer-container">
                 {/** condition to pass the latest instance of handleCreateBooking with user data*/}
-                {Object.keys(userInfo).length > 0 && 
+                {userInfo && bookings && 
                     <Scheduler
                         view="day"
                         onConfirm={handleCreateBooking}

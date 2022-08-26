@@ -81,8 +81,8 @@ export const brApi = createApi({
       query: id => `/bikes/${id}`,
       providesTags: ['Bikes']
     }),
-    getBooking: builder.query({
-      query: bikeId => `/bookings?bikeId=${bikeId}`,
+    getBookings: builder.query({
+      query: ({queryBy, value}) => `/bookings?${queryBy}=${value}`,
       providesTags: ['Bookings']
     }),
     addBooking: builder.mutation({
@@ -110,6 +110,6 @@ export const {
   useUpdateBikeMutation,
   useDeleteBikeMutation,
   useGetBikeQuery,
-  useGetBookingQuery,
+  useGetBookingsQuery,
   useAddBookingMutation
 } = brApi
