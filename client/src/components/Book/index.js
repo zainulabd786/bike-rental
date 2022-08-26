@@ -1,7 +1,7 @@
 import { memo, useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import {
-    useGetBikeQuery, 
+    useGetBikeQuery,
     useGetBookingQuery,
     useAddBookingMutation
 } from 'redux/services';
@@ -12,7 +12,7 @@ import commonSlice from 'redux/slices/common';
 const Book = props => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { user = {} } = useSelector(state => state);
+    const { userInfo = {} } = useSelector(state => state.user);
     const [bookings, setBookings] = useState([]);
 
     const getBikeQueryResults = useGetBikeQuery(id);
@@ -36,17 +36,18 @@ const Book = props => {
 
     const handleCreateBooking = useCallback(async (event) => {
         const { start, end } = event
-        await addBooking({
+        const payload = {
             title: 'Booked',
-            userId: user.userInfo?.id,
+            userId: userInfo.id,
             bikeId: parseInt(id),
             start: new Date(start).valueOf(),
             end: new Date(end).valueOf()
-        });
+        }
+        await addBooking(payload);
         return event;
-    }, [addBooking])
+    }, [addBooking, userInfo, id])
 
-    
+
 
 
     return <div>
@@ -60,18 +61,21 @@ const Book = props => {
             </h1>
             {/* TODO: Disable previous Button */}
             <div className="scheculer-container">
-                <Scheduler
-                    view="day"
-                    onConfirm={handleCreateBooking}
-                    selectedDate={new Date()}
-                    events={bookings.map(({ id, title, start, end, userId }) => ({
-                        event_id: id,
-                        start: new Date(start),
-                        end: new Date(end),
-                        title,
-                        disabled: true
-                    }))}
-                />
+                {/** condition to pass the latest instance of handleCreateBooking with user data*/}
+                {Object.keys(userInfo).length > 0 && 
+                    <Scheduler
+                        view="day"
+                        onConfirm={handleCreateBooking}
+                        selectedDate={new Date()}
+                        events={bookings.map(({ id, title, start, end }) => ({
+                            event_id: id,
+                            start: new Date(start),
+                            end: new Date(end),
+                            title,
+                            disabled: true
+                        }))}
+                    />
+                }
             </div>
 
         </div>

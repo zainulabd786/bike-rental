@@ -65,31 +65,35 @@
     },
     {
       "title": "Booked",
+      "userId": 1,
+      "bikeId": 5,
+      "start": 1661599800000,
+      "end": 1661603400000,
+      "id": 6
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
       "bikeId": 5,
       "start": 1661581800000,
       "end": 1661585400000,
-      "id": 2
+      "id": 7
     },
     {
       "title": "Booked",
+      "userId": 1,
       "bikeId": 5,
-      "start": 1661592600000,
-      "end": 1661596200000,
-      "id": 3
+      "start": 1661589000000,
+      "end": 1661592600000,
+      "id": 8
     },
     {
       "title": "Booked",
+      "userId": 2,
       "bikeId": 5,
-      "start": 1661668200000,
-      "end": 1661671800000,
-      "id": 4
-    },
-    {
-      "title": "Booked",
-      "bikeId": 5,
-      "start": 1661578200000,
-      "end": 1661581800000,
-      "id": 5
+      "start": 1661571000000,
+      "end": 1661574600000,
+      "id": 9
     }
   ],
   "ratings": [
