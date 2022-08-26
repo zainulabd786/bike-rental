@@ -32,22 +32,25 @@
       "available": false
     },
     {
-      "model": "Yamaha X200",
-      "color": "Red",
-      "location": "Lucknow",
-      "Rating": "4",
-      "available": true,
-      "id": 2
-    }
-  ],
-  "bookings": [
+      "model": "Suzuki 1X",
+      "color": "Green",
+      "location": "Delhi",
+      "id": 4
+    },
     {
-      "id": 1,
-      "bikeId": 2,
-      "start": 1661425200000,
-      "end": 1661493600000
+      "model": "Suzuki X1",
+      "color": "Blue",
+      "location": "Lucknow",
+      "id": 5
+    },
+    {
+      "model": "Honda XYZ",
+      "color": "Green",
+      "location": "Manali",
+      "id": 6
     }
   ],
+  "bookings": [],
   "ratings": [
     {
       "id": 1,

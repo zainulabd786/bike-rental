@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const brApi = createApi({
   reducerPath: 'brApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
-  tagTypes: ['User'],
+  tagTypes: ['Users', 'Bikes'],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: loginData => ({
@@ -13,7 +13,7 @@ export const brApi = createApi({
         method: 'POST',
         body: loginData
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ['Users']
     }),
     getUser: builder.query({
       query: email => `/users?email=${email}`,
@@ -25,7 +25,7 @@ export const brApi = createApi({
     }),
     getAllUsers: builder.query({
       query: () => "/users",
-      providesTags: ['User']
+      providesTags: ['Users']
     }),
     signUp: builder.mutation({
       query: data => ({
@@ -33,7 +33,7 @@ export const brApi = createApi({
         method: 'POST',
         body: data
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ['Users']
     }),
     updateUser: builder.mutation({
       query: data => ({
@@ -41,14 +41,41 @@ export const brApi = createApi({
         method: 'PATCH',
         body: data
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ['Users']
     }),
     deleteUser: builder.mutation({
       query: id => ({
         url: `/users/${id}`,
         method: 'DELETE'
       }),
-      invalidatesTags: ['User']
+      invalidatesTags: ['Users']
+    }),
+    addBike: builder.mutation({
+      query: data => ({
+        url: '/bikes',
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['Bikes']
+    }),
+    getAllBikes: builder.query({
+      query: () => "/bikes",
+      providesTags: ['Bikes']
+    }),
+    updateBike: builder.mutation({
+      query: data => ({
+        url: `/bikes/${data.id}`,
+        method: 'PATCH',
+        body: data
+      }),
+      invalidatesTags: ['Bikes']
+    }),
+    deleteBike: builder.mutation({
+      query: id => ({
+        url: `/bikes/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['Bikes']
     }),
   }),
 })
@@ -61,5 +88,9 @@ export const {
   useGetUserQuery,
   useSignUpMutation,
   useUpdateUserMutation,
-  useDeleteUserMutation
+  useDeleteUserMutation,
+  useAddBikeMutation,
+  useGetAllBikesQuery,
+  useUpdateBikeMutation,
+  useDeleteBikeMutation
 } = brApi

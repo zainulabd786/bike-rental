@@ -38,7 +38,7 @@ const SignUp = props => {
         } else {
             dispatch(commonSlice.actions.setMessage({ text: "", variant: '' }))
         }
-    }, [error, isLoading, data, isError, status, isSuccess, redirectPath, dispatch, navigate])
+    }, [error, isLoading, data, isError, status, isSuccess, redirectPath, defaultInputVals, dispatch, navigate])
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
