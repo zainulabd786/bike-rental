@@ -16,12 +16,13 @@ const SignUp = props => {
     const [signUp, { data, isLoading, error, status, isError, isSuccess }] = useSignUpMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [inputVals, setInputVals] = useState({
+    const defaultInputVals = useMemo(() => ({
         name: "",
         email: "",
         password: "",
         role: 1
-    });
+    }), [])
+    const [inputVals, setInputVals] = useState(defaultInputVals);
 
     useEffect(() => {
         dispatch(commonSlice.actions.setLoading(isLoading));
@@ -30,6 +31,7 @@ const SignUp = props => {
                 text: "Account Successfully Created!", 
                 variant: 'success' 
             }));
+            setInputVals(defaultInputVals)
             if(redirectPath) navigate(redirectPath);
         } else if (!isLoading && isError && status === "rejected") {
             dispatch(commonSlice.actions.setMessage({ text: error.data, variant: 'error' }));

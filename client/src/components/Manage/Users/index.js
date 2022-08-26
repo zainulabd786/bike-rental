@@ -80,7 +80,16 @@ const ManageUsers = props => {
                                     <option value={roles.manager} >Manager</option>
                                 </select>
                             </td>
-                            <td><input type="password" name="password" value={password} onChange={(e) => handleRowChange(e, idx)} disabled={!isEditing} /></td>
+                            <td>
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    placeholder='******'
+                                    value={password} 
+                                    onChange={(e) => handleRowChange(e, idx)} 
+                                    disabled={!isEditing} 
+                                />
+                            </td>
                             <td>
                                 <Button size='small' onClick={() => handleEditRow(!isEditing, idx)}>
                                     {isEditing ? "Save": "Edit"}

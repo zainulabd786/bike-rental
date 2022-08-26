@@ -29,8 +29,8 @@ function App() {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken');
-  const { email = "" } = accessToken ? jwt_decode(accessToken) : {};
-  const userQueryResults = useGetUserQuery(email, { skip: email === "" });
+  const { email } = accessToken ? jwt_decode(accessToken) : {};
+  const userQueryResults = useGetUserQuery(email, { skip: !!userInfo?.email });
 
   useEffect(() => {
     if (accessToken) {

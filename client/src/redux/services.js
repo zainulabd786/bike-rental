@@ -19,7 +19,7 @@ export const brApi = createApi({
       query: email => `/users?email=${email}`,
       providesTags: ['User'],
       transformResponse: ([response]) => {
-        delete response.password;
+        if(response) delete response.password;
         return response;
       }
     }),
