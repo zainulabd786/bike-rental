@@ -8,7 +8,8 @@ const AddBikes = props => {
     const defaultInputVals = useMemo(() => ({
         model: '',
         color: '',
-        location: ''
+        location: '',
+        available: true
     }), []);
     const dispatch = useDispatch();
     const [inputVals, setInputVals] = useState(defaultInputVals);
