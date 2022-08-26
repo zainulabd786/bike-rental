@@ -1,14 +1,19 @@
-import { memo, useState, useEffect, useMemo } from "react";
+import { memo, useState, useEffect, useMemo, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { useGetBikeQuery, useGetBookingQuery } from 'redux/services';
-import { Scheduler } from "@aldabil/react-scheduler";
+import {
+    useGetBikeQuery, 
+    useGetBookingQuery,
+    useAddBookingMutation
+} from 'redux/services';
 import { useSelector } from "react-redux";
 const Book = props => {
     const { id } = useParams();
     const { user = {} } = useSelector(state => state);
     const [bookings, setBookings] = useState([]);
+
     const getBikeQueryResults = useGetBikeQuery(id);
     const getBookingQueryResults = useGetBookingQuery(id);
+    const [addBooking, addBookingMutationResponse] = useAddBookingMutation();
 
     useEffect(() => {
         if (getBookingQueryResults.isSuccess && getBookingQueryResults.data) {
@@ -16,13 +21,19 @@ const Book = props => {
         }
     }, [getBookingQueryResults]);
 
-    const weekProps = useMemo(() => ({
-        weekDays: [0, 1, 2, 3, 4, 5],
-        weekStartOn: 0,
-        startHour: 9,
-        endHour: 17,
-        step: 60,
-    }),[]);
+    const handleCreateBooking = useCallback(async (event) => {
+        const { start, end } = event
+        await addBooking({
+            title: 'Booked',
+            userId: user.userInfo?.id,
+            bikeId: id,
+            start,
+            end
+        });
+        return event;
+    }, [addBooking])
+
+    
 
 
     return <div>
@@ -34,20 +45,8 @@ const Book = props => {
             <h1>
                 Book {getBikeQueryResults.data?.model}
             </h1>
-            {/* TODO: Disable previous Button */}
             <div className="scheculer-container">
-                <Scheduler
-                    view="week"
-                    week={weekProps}
-                    fields={[]}
-                    events={bookings.map(({ id, title, start, end, userId }) => ({
-                        event_id: id,
-                        start: new Date(start),
-                        end: new Date(end),
-                        title,
-                        disabled: true
-                    }))}
-                />
+                
             </div>
 
         </div>
