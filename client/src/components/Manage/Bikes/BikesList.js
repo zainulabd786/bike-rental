@@ -70,9 +70,10 @@ const BikesList = props => {
                     <th>Color</th>
                     <th>Location</th>
                     <th>Available</th>
+                    <th>Rating</th>
                     <th>Actions</th>
                 </tr>
-                {bikesList?.map(({ id, model, color, location, available = false, isEditing }, idx) => {
+                {bikesList?.map(({ id, model, color, location, available = false, rating, isEditing }, idx) => {
                     return (
                         <tr key={id}>
                             <td>{id}</td>
@@ -113,6 +114,8 @@ const BikesList = props => {
                                     <option value={false} >No</option>
                                 </select>
                             </td>
+
+                            <td>{rating}</td>
 
                             <td>
                                 <Button size='small' variant={isEditing ? 'outlined' : 'text'} onClick={() => handleEditRow(!isEditing, idx)}>

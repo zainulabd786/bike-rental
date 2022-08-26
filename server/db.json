@@ -28,7 +28,7 @@
       "model": "Yamaha X100",
       "color": "Black",
       "location": "Saharanpur",
-      "Rating": "4.3",
+      "rating": 4.3,
       "available": false
     },
     {
@@ -36,6 +36,7 @@
       "color": "Green",
       "location": "Delhi",
       "id": 4,
+      "rating": 5.0,
       "available": true
     },
     {
