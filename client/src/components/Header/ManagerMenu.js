@@ -39,7 +39,7 @@ const ManagerMenu = props => {
           }}
         >
           <MenuItem onClick={() => hancleMenuItemClick('/manage/users')}>Users</MenuItem>
-          <MenuItem onClick={() => hancleMenuItemClick('/manage/listings')}>Listings</MenuItem>
+          <MenuItem onClick={() => hancleMenuItemClick('/manage/bikes')}>Bikes</MenuItem>
           <MenuItem onClick={() => hancleMenuItemClick('/manage/bookings')}>Bookings</MenuItem>
         </Menu>
       </div>

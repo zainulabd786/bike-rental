@@ -18,7 +18,7 @@ import Home from 'components/Home'
 import Login from 'components/Login'
 import Header from 'components/Header'
 import SignUp from 'components/SignUp'
-import { Users, Listings, Bookings } from 'components/Manage'
+import { Users, Bikes, Bookings } from 'components/Manage'
 
 
 function App() {
@@ -65,7 +65,7 @@ function App() {
           </Route>
           <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === roles.manager: userInfo} />} > {/** Manager Routes */}
               <Route path="/manage/users" element={<Users/>} />
-              <Route path="/manage/listings" element={<Listings/>} />
+              <Route path="/manage/bikes" element={<Bikes/>} />
               <Route path="/manage/bookings" element={<Bookings/>} />
             </Route>
         </Routes>
