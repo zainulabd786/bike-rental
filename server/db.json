@@ -62,6 +62,34 @@
       "end": 1659416400000,
       "userId": 1,
       "bikeId": 5
+    },
+    {
+      "title": "Booked",
+      "bikeId": 5,
+      "start": 1661581800000,
+      "end": 1661585400000,
+      "id": 2
+    },
+    {
+      "title": "Booked",
+      "bikeId": 5,
+      "start": 1661592600000,
+      "end": 1661596200000,
+      "id": 3
+    },
+    {
+      "title": "Booked",
+      "bikeId": 5,
+      "start": 1661668200000,
+      "end": 1661671800000,
+      "id": 4
+    },
+    {
+      "title": "Booked",
+      "bikeId": 5,
+      "start": 1661578200000,
+      "end": 1661581800000,
+      "id": 5
     }
   ],
   "ratings": [
