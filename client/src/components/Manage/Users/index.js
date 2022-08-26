@@ -1,8 +1,10 @@
-import { memo, useMemo, useState, useEffect } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { useGetAllUsersQuery, useUpdateUserMutation } from 'redux/services';
 import { Button } from '@mui/material';
 import commonSlice from 'redux/slices/common';
 import { useDispatch } from 'react-redux';
+import AddUser from './AddUser';
+import { roles } from 'constants';
 
 const ManageUsers = props => {
     const [usersList, setUsersList] = useState([]);
@@ -27,7 +29,7 @@ const ManageUsers = props => {
         } else if(updateUserMutationResults.isError && updateUserMutationResults.error){
             dispatch(commonSlice.actions.setMessage({ text: updateUserMutationResults.error.message, variant: "error" }));
         }
-    }, [updateUserMutationResults]);
+    }, [updateUserMutationResults, dispatch]);
     
     const handleEditRow = (e, idx) => {
         const usersClone = [...usersList];
@@ -43,28 +45,42 @@ const ManageUsers = props => {
     const handleRowChange = (e, idx) => {
         const { name, value } = e.target;
         const usersClone = [...usersList];
-        usersClone[idx][name] = value;
+        usersClone[idx][name] = name === 'role' ? parseInt(value) : value;
         setUsersList(usersClone);
     }
 
     return <div>
         {isError && <div className='text-danger'>{error.data}</div>}
-        <table className='w-100'>
+        <div className='text-end' >
+            <AddUser/>
+        </div>
+        <table className='w-100 my-3'>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Password</th>
                     <th>Actions</th>
                 </tr>
-                {usersList?.map(({id, name, email, isEditing, password}, idx) => {
+                {usersList?.map(({id, name, email, isEditing, password, role}, idx) => {
                     return (
-                        <tr>
+                        <tr key={id}>
                             <td>{id}</td>
                             <td><input name="name" value={name} onChange={(e) => handleRowChange(e, idx)} disabled={!isEditing} /></td>
                             <td><input name="email" value={email} onChange={(e) => handleRowChange(e, idx)} disabled={!isEditing} /></td>
-                            <td><input type="password" name="password" value={password || '******'} onChange={(e) => handleRowChange(e, idx)} disabled={!isEditing} /></td>
+                            <td>
+                                <select name="role" 
+                                    value={role} 
+                                    onChange={(e) => handleRowChange(e, idx)} 
+                                    disabled={!isEditing} 
+                                >
+                                    <option value={roles.user} >User</option>
+                                    <option value={roles.manager} >Manager</option>
+                                </select>
+                            </td>
+                            <td><input type="password" name="password" value={password} onChange={(e) => handleRowChange(e, idx)} disabled={!isEditing} /></td>
                             <td>
                                 <Button size='small' onClick={() => handleEditRow(!isEditing, idx)}>
                                     {isEditing ? "Save": "Edit"}

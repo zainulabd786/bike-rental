@@ -1,34 +1,42 @@
-import { memo, useCallback, useState, useEffect } from 'react';
+import { memo, useCallback, useState, useEffect, useMemo } from 'react';
 import { TextField, Button } from '@mui/material';
 import { useSignUpMutation } from 'redux/services';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import commonSlice from 'redux/slices/common';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import cx from 'classnames';
+import { roles } from 'constants';
+
 
 const SignUp = props => {
+    const { 
+        view = 'vertical',
+        redirectPath = '/login'
+    } = props
     const [signUp, { data, isLoading, error, status, isError, isSuccess }] = useSignUpMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
     const [inputVals, setInputVals] = useState({
         name: "",
         email: "",
         password: "",
         role: 1
     });
-    const { loggedIn } = useSelector(state => state.user);
 
     useEffect(() => {
         dispatch(commonSlice.actions.setLoading(isLoading));
         if (isSuccess && data) {
-            dispatch(commonSlice.actions.setMessage({ text: "Account Successfully Created!", variant: 'success' }));
-            navigate('/login');
+            dispatch(commonSlice.actions.setMessage({ 
+                text: "Account Successfully Created!", 
+                variant: 'success' 
+            }));
+            if(redirectPath) navigate(redirectPath);
         } else if (!isLoading && isError && status === "rejected") {
-            dispatch(commonSlice.actions.setMessage({ text: error.data, variant: 'error' }))
+            dispatch(commonSlice.actions.setMessage({ text: error.data, variant: 'error' }));
         } else {
             dispatch(commonSlice.actions.setMessage({ text: "", variant: '' }))
         }
-    }, [error, isLoading, data, isError, status, isSuccess, dispatch, navigate])
+    }, [error, isLoading, data, isError, status, isSuccess, redirectPath, dispatch, navigate])
 
     const handleSubmit = useCallback((e) => {
         e.preventDefault();
@@ -37,16 +45,19 @@ const SignUp = props => {
 
     const handleInputChange = e => {
         const { name, value } = e.target;
-        setInputVals({ ...inputVals, [name]: value })
+        setInputVals({ ...inputVals, [name]: value });
     }
 
-    if (loggedIn) {
-        return <Navigate to={location?.state?.from || "/"} replace />;
-    }
+    const isVertical = useMemo(() => view === 'vertical', [view]);
 
     return (
         <div className='d-flex justify-content-center'>
-            <form onSubmit={handleSubmit} className="d-flex flex-column">
+            <form onSubmit={handleSubmit} 
+                className={cx('d-flex', { 
+                    'flex-column': isVertical, 
+                    'w-100 justify-content-center align-items-center': !isVertical 
+                })}
+            >
                 <TextField
                     label="Name"
                     name="name"
@@ -65,6 +76,18 @@ const SignUp = props => {
                     margin='normal'
 
                 />
+                {
+                    !isVertical && <select 
+                        className='p-2 mt-1' 
+                        name="role" 
+                        onChange={handleInputChange}
+                        value={inputVals.role}
+                    >
+                        <option value="">Select role</option>
+                        <option value={roles.user}>User</option>
+                        <option value={roles.manager}>Manager</option>
+                    </select>
+                }
                 <TextField
                     type="password"
                     name="password"
@@ -76,7 +99,9 @@ const SignUp = props => {
                 />
                 <Button
                     type='submit'
-                    size="small"
+                    size="large"
+                    variant='outlined'
+                    className='mt-1'
                     disabled={Object.values(inputVals).includes("")}
                 >
                     Sign Up

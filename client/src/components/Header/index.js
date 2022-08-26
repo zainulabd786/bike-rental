@@ -4,7 +4,7 @@ import userSlice from 'redux/slices/user';
 import { useDispatch, useSelector } from "react-redux";
 import ManagerMenu from './ManagerMenu';
 import { useNavigate } from "react-router-dom";
-
+import { roles } from "constants";
 const Header = props => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Header = props => {
     return <div className="d-flex justify-content-between">
         <h1>Bike Rental App</h1>
         <div className="d-flex justify-content-between align-items-center">
-            { userInfo?.role === 0 && <><ManagerMenu /> |</> }
+            { userInfo?.role === roles.manager && <><ManagerMenu /> |</> }
             <Button >Profile</Button> |
             <Button onClick={handleLogout}>Logout</Button>
         </div>
