@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const brApi = createApi({
   reducerPath: 'brApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
-  tagTypes: ['Users', 'Bikes'],
+  tagTypes: ['Users', 'Bikes', 'Bookings'],
   endpoints: (builder) => ({
     login: builder.mutation({
       query: loginData => ({
@@ -77,6 +77,14 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['Bikes']
     }),
+    getBike: builder.query({
+      query: id => `/bikes/${id}`,
+      providesTags: ['Bikes']
+    }),
+    getBooking: builder.query({
+      query: bikeId => `/bookings?bikeId=${bikeId}`,
+      providesTags: ['Bookings']
+    }),
   }),
 })
 
@@ -92,5 +100,7 @@ export const {
   useAddBikeMutation,
   useGetAllBikesQuery,
   useUpdateBikeMutation,
-  useDeleteBikeMutation
+  useDeleteBikeMutation,
+  useGetBikeQuery,
+  useGetBookingQuery
 } = brApi

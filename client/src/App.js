@@ -14,11 +14,13 @@ import { useGetUserQuery } from 'redux/services'
 import { roles } from 'constants';
 
 import PrivateRoute from './components/PrivateRoute';
-import Home from 'components/Home'
-import Login from 'components/Login'
-import Header from 'components/Header'
-import SignUp from 'components/SignUp'
-import { Users, Bikes, Bookings } from 'components/Manage'
+import Home from 'components/Home';
+import Login from 'components/Login';
+import Header from 'components/Header';
+import SignUp from 'components/SignUp';
+import { Users, Bikes, Bookings } from 'components/Manage';
+import Book from 'components/Book';
+
 
 
 function App() {
@@ -62,6 +64,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route element={<PrivateRoute isAllowed={loggedIn} />}>
             <Route path="/" element={<Home />} />
+            <Route path="book/:id" element={<Book />} />
           </Route>
           <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === roles.manager: userInfo} />} > {/** Manager Routes */}
               <Route path="/manage/users" element={<Users/>} />

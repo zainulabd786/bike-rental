@@ -54,7 +54,16 @@
       "available": "false"
     }
   ],
-  "bookings": [],
+  "bookings": [
+    {
+      "id": 1,
+      "title": "Booked",
+      "start": 1659412800000,
+      "end": 1659416400000,
+      "userId": 1,
+      "bikeId": 5
+    }
+  ],
   "ratings": [
     {
       "id": 1,

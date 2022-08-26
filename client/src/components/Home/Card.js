@@ -4,12 +4,19 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { green } from '@mui/material/colors';
 
 
-export default function BikeCard({model, color, location, id, available, rating}) {
+export default function BikeCard({
+  model, 
+  color, 
+  location, 
+  id, 
+  available, 
+  rating, 
+  handleBookClick
+}) {
   return (
     <Card sx={{ width: '100%' }}>
       <CardHeader
@@ -34,7 +41,7 @@ export default function BikeCard({model, color, location, id, available, rating}
       </CardContent>
       <CardActions className='justify-content-between' disableSpacing>
         <Typography>Rating: {rating}</Typography>
-        <Button disabled={!available}>Book</Button> 
+        <Button onClick={() => handleBookClick(id)} disabled={!available}>Book</Button> 
       </CardActions>
     </Card>
   );
