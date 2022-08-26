@@ -3,8 +3,10 @@ import { Button } from "@mui/material";
 import userSlice from 'redux/slices/user';
 import { useDispatch, useSelector } from "react-redux";
 import ManagerMenu from './ManagerMenu';
+import UserMenu from './UserMenu';
 import { useNavigate } from "react-router-dom";
 import { roles } from "constants";
+
 const Header = props => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +21,10 @@ const Header = props => {
 
     return <div>
         <div className="d-flex justify-content-between">
-            <h1>Bike Rental App</h1>
+            <div className="d-flex align-items-center">
+                <h1 className="mx-2">Bike Rental App</h1>
+                <UserMenu />
+            </div>
             <div className="d-flex justify-content-between align-items-center">
                 {userInfo?.role === roles.manager && <><ManagerMenu /> |</>}
                 <Button >Profile</Button> |
