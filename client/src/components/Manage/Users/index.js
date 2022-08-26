@@ -1,5 +1,9 @@
-import { memo, useState, useEffect } from 'react';
-import { useGetAllUsersQuery, useUpdateUserMutation } from 'redux/services';
+import { memo, useState, useEffect, useCallback } from 'react';
+import { 
+    useGetAllUsersQuery, 
+    useUpdateUserMutation, 
+    useDeleteUserMutation 
+} from 'redux/services';
 import { Button } from '@mui/material';
 import commonSlice from 'redux/slices/common';
 import { useDispatch } from 'react-redux';
@@ -11,6 +15,7 @@ const ManageUsers = props => {
     const dispatch = useDispatch();
     const { data, error, isError, isSuccess } = useGetAllUsersQuery();
     const [updateUser, updateUserMutationResults] = useUpdateUserMutation();
+    const [deleteUser, deleteUserMutationResults] = useDeleteUserMutation();
 
     useEffect(() => {
         if(isSuccess){
@@ -30,6 +35,15 @@ const ManageUsers = props => {
             dispatch(commonSlice.actions.setMessage({ text: updateUserMutationResults.error.message, variant: "error" }));
         }
     }, [updateUserMutationResults, dispatch]);
+
+    useEffect(() => {
+        dispatch(commonSlice.actions.setLoading(deleteUserMutationResults.isLoading))
+        if(deleteUserMutationResults.isSuccess && deleteUserMutationResults.data){
+            dispatch(commonSlice.actions.setMessage({ text: "User Deleted Successfully!", variant: "success" }));
+        } else if(deleteUserMutationResults.isError && deleteUserMutationResults.error){
+            dispatch(commonSlice.actions.setMessage({ text: deleteUserMutationResults.error.message, variant: "error" }));
+        }
+    }, [deleteUserMutationResults, dispatch]);
     
     const handleEditRow = (e, idx) => {
         const usersClone = [...usersList];
@@ -48,6 +62,10 @@ const ManageUsers = props => {
         usersClone[idx][name] = name === 'role' ? parseInt(value) : value;
         setUsersList(usersClone);
     }
+
+    const handleDeleteUser = useCallback(idx => {
+        deleteUser(usersList[idx].id);
+    },[usersList])
 
     return <div>
         {isError && <div className='text-danger'>{error.data}</div>}
@@ -94,7 +112,7 @@ const ManageUsers = props => {
                                 <Button size='small' onClick={() => handleEditRow(!isEditing, idx)}>
                                     {isEditing ? "Save": "Edit"}
                                 </Button>
-                                <Button size='small'>Delete</Button>
+                                <Button size='small' onClick={() => handleDeleteUser(idx)}>Delete</Button>
                             </td>
                         </tr>
                     )

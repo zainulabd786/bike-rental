@@ -5,42 +5,21 @@
       "password": "$2a$10$cVLu4qXinyEo9KKZ7eyA5ORmL/rqdxSKm3hgEtd5od/21LJYCqa5e",
       "name": "Zainul Abideen",
       "id": 1,
-      "role": 1
+      "role": 0
     },
     {
       "email": "waeez@gmail.com",
       "password": "$2a$10$LStyCxqQFlGaXavsZNQZqO3s/j9S7jlnY9yBFtnRpTjaX3FE7Inz6",
       "name": "Waeez A",
       "id": 2,
-      "role": 0
-    },
-    {
-      "email": "zain@gmail.com",
-      "password": "$2a$10$edpKmxDKiTaR0ecB/OXfpO0PqRHH0Fi15IeImg83HoJp4SjGU6xlS",
-      "name": "zain",
-      "role": 0,
-      "id": 3
-    },
-    {
-      "email": "hanz@gmail.com",
-      "password": "$2a$10$GzCvvqsW0KYLgEhwi/8Y4egzopymV7YKwTLAFbIvocy1OxVJ.LX4G",
-      "name": "hanz",
-      "role": 1,
-      "id": 4
+      "role": 1
     },
     {
       "email": "lubna@gm.com",
-      "password": "$2a$10$3J/O50aQHDaf697n0xZ5SuZehkfz4yCXJZNjmsM.6ePzKOFQ5R6/K",
-      "name": "Lubna",
+      "password": "$2a$10$6DL5iaujkbN2tkxhGf.XJebzqnJLzPPt5l5kHMQE81WRqF8IPcs3O",
+      "name": "lubna",
       "role": 1,
-      "id": 5
-    },
-    {
-      "email": "Monis@gmail.com",
-      "password": "$2a$10$kHBw6A/Tg.sQi4eB72m6o.PBESeCVTXDh5CqJTsdDbof4eE.eWeZ6",
-      "name": "Monis",
-      "role": "0",
-      "id": 6
+      "id": 3
     }
   ],
   "bikes": [

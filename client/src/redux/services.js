@@ -43,6 +43,13 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['User']
     }),
+    deleteUser: builder.mutation({
+      query: id => ({
+        url: `/users/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['User']
+    }),
   }),
 })
 
@@ -53,5 +60,6 @@ export const {
   useGetAllUsersQuery,
   useGetUserQuery,
   useSignUpMutation,
-  useUpdateUserMutation
+  useUpdateUserMutation,
+  useDeleteUserMutation
 } = brApi
