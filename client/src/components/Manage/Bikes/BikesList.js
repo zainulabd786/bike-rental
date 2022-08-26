@@ -23,18 +23,18 @@ const BikesList = props => {
 
     useEffect(() => {
         dispatch(commonSlice.actions.setLoading(updateBikeMutationResults.isLoading))
-        if(updateBikeMutationResults.isSuccess && updateBikeMutationResults.data){
+        if (updateBikeMutationResults.isSuccess && updateBikeMutationResults.data) {
             dispatch(commonSlice.actions.setMessage({ text: "Bike updated Successfully!", variant: "success" }));
-        } else if(updateBikeMutationResults.isError && updateBikeMutationResults.error){
+        } else if (updateBikeMutationResults.isError && updateBikeMutationResults.error) {
             dispatch(commonSlice.actions.setMessage({ text: updateBikeMutationResults.error.message, variant: "error" }));
         }
     }, [updateBikeMutationResults, dispatch]);
 
     useEffect(() => {
         dispatch(commonSlice.actions.setLoading(deleteBikeMutationResults.isLoading))
-        if(deleteBikeMutationResults.isSuccess && deleteBikeMutationResults.data){
+        if (deleteBikeMutationResults.isSuccess && deleteBikeMutationResults.data) {
             dispatch(commonSlice.actions.setMessage({ text: "Bike Deleted Successfully!", variant: "success" }));
-        } else if(deleteBikeMutationResults.isError && deleteBikeMutationResults.error){
+        } else if (deleteBikeMutationResults.isError && deleteBikeMutationResults.error) {
             dispatch(commonSlice.actions.setMessage({ text: deleteBikeMutationResults.error.message, variant: "error" }));
         }
     }, [deleteBikeMutationResults, dispatch]);
@@ -52,7 +52,7 @@ const BikesList = props => {
     const handleRowChange = (e, idx) => {
         const { name, value } = e.target;
         const bikesClone = [...bikesList];
-        bikesClone[idx][name] = value;
+        bikesClone[idx][name] = name === 'available' ? !!value : value;
         setBikesList(bikesClone);
     }
 
@@ -69,9 +69,10 @@ const BikesList = props => {
                     <th>Model</th>
                     <th>Color</th>
                     <th>Location</th>
+                    <th>Available</th>
                     <th>Actions</th>
                 </tr>
-                {bikesList?.map(({ id, model, color, location, isEditing }, idx) => {
+                {bikesList?.map(({ id, model, color, location, available = false, isEditing }, idx) => {
                     return (
                         <tr key={id}>
                             <td>{id}</td>
@@ -101,7 +102,20 @@ const BikesList = props => {
                             </td>
 
                             <td>
-                                <Button size='small' onClick={() => handleEditRow(!isEditing, idx)}>
+                                <select
+                                    name="available"
+                                    className='p-2'
+                                    value={available}
+                                    disabled={!isEditing}
+                                    onChange={(e) => handleRowChange(e, idx)}
+                                >
+                                    <option value={true} >Yes</option>
+                                    <option value={false} >No</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <Button size='small' variant={isEditing ? 'outlined' : 'text'} onClick={() => handleEditRow(!isEditing, idx)}>
                                     {isEditing ? "Save" : "Edit"}
                                 </Button>
                                 <Button size='small' onClick={() => handleDeleteBike(idx)}>Delete</Button>

@@ -35,19 +35,22 @@
       "model": "Suzuki 1X",
       "color": "Green",
       "location": "Delhi",
-      "id": 4
+      "id": 4,
+      "available": true
     },
     {
       "model": "Suzuki X1",
       "color": "Blue",
       "location": "Lucknow",
-      "id": 5
+      "id": 5,
+      "available": "true"
     },
     {
       "model": "Honda XYZ",
       "color": "Green",
       "location": "Manali",
-      "id": 6
+      "id": 6,
+      "available": "false"
     }
   ],
   "bookings": [],
