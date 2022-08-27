@@ -7,16 +7,21 @@ import {
 } from "redux/services";
 import { Button, Rating } from "@mui/material";
 import commonSlice from 'redux/slices/common';
+import { UserDetails } from 'components/Shared';
 
 const Bookings = props => {
+    const {
+        getAll = false,
+        disableRate = false
+    } = props;
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.user) || {};
     const [bookings, setBookings] = useState([]);
-    const getBookingsQueryResults = useGetBookingsQuery({
+    const getBookingsQueryResults = useGetBookingsQuery(getAll ? undefined : {
         queryBy: 'userId',
         value: userInfo?.id
-    }, {
-        skip: !userInfo?.id
+    } , {
+        skip: getAll ? false : !userInfo?.id
     });
     const [updateBooking, updateBookingMutationResults] = useUpdateBookingMutation();
     const getAllBikesQueryResults = useGetAllBikesQuery();
@@ -59,6 +64,7 @@ const Bookings = props => {
                     <th>From Date</th>
                     <th>To Date</th>
                     <th>Bike</th>
+                    {getAll && <th>User</th>}
                     <th>Booking Status</th>
                     <th>Rate</th>
                     <th>Actions</th>
@@ -66,7 +72,7 @@ const Bookings = props => {
             </thead>
             <tbody>
                 {
-                    bookings.map(({ id, start, end, bikeId, status, rating = 0 }, idx) => {
+                    bookings.map(({ id, start, end, bikeId, status, rating = 0, userId }, idx) => {
                         let from = new Date(start);
                         from = `${from.getDate()}/${from.getMonth() + 1}/${from.getFullYear()} 
                                 - ${from.getHours()}:${from.getMinutes()}`
@@ -79,12 +85,14 @@ const Bookings = props => {
                             <td>{from}</td>
                             <td>{to}</td>
                             <td>{bike?.model}</td>
+                            {getAll &&<td><UserDetails id={userId} /></td>}
                             <td>{status}</td>
                             <td>
                                 <Rating 
                                     name="rating" 
                                     onChange={(e, newValue) => handleRateChange(newValue, idx)} 
                                     value={rating} 
+                                    readOnly={disableRate}
                                 />
                             </td>
                             <td>

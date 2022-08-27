@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Grid } from "@mui/material";
 import UpdateProfile from "./UpdateProfile";
-import BookingsList from "./BookingsList";
+import { BookingsList } from "components/Shared";
 
 const Profile = props => {
 

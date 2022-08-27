@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useCallback } from 'react';
 import { 
-    useGetAllUsersQuery, 
+    useGetUsersQuery, 
     useUpdateUserMutation, 
     useDeleteUserMutation 
 } from 'redux/services';
@@ -12,7 +12,7 @@ import { ROLES } from 'constants';
 const UsersList = props => {
     const [usersList, setUsersList] = useState([]);
     const dispatch = useDispatch();
-    const { data, error, isError, isSuccess } = useGetAllUsersQuery();
+    const { data, error, isError, isSuccess } = useGetUsersQuery();
     const [updateUser, updateUserMutationResults] = useUpdateUserMutation();
     const [deleteUser, deleteUserMutationResults] = useDeleteUserMutation();
 

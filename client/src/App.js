@@ -10,7 +10,7 @@ import { useSnackbar } from "notistack";
 import { useSelector, useDispatch } from "react-redux";
 import userSlice from 'redux/slices/user';
 import jwt_decode from "jwt-decode";
-import { useGetUserQuery } from 'redux/services'
+import { useGetUsersQuery } from 'redux/services'
 import { ROLES } from 'constants';
 
 import PrivateRoute from './components/PrivateRoute';
@@ -33,7 +33,7 @@ function App() {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('accessToken');
   const { email } = accessToken ? jwt_decode(accessToken) : {};
-  const userQueryResults = useGetUserQuery(email, { skip: !!userInfo?.email });
+  const userQueryResults = useGetUsersQuery({ queryBy: 'email', value: email }, { skip: !!userInfo?.email });
 
   useEffect(() => {
     if (accessToken) {
@@ -49,8 +49,8 @@ function App() {
   }, [loading, message, accessToken, enqueueSnackbar, dispatch]);
 
   useEffect(() => {
-    if (loggedIn && userQueryResults.data) {
-      dispatch(userSlice.actions.setUserInfo(userQueryResults.data))
+    if (loggedIn && userQueryResults.isSuccess && !userQueryResults.isFetching && userQueryResults?.data[0]) {
+      dispatch(userSlice.actions.setUserInfo(userQueryResults.data[0]))
     }
   }, [loggedIn, userQueryResults, dispatch])
 

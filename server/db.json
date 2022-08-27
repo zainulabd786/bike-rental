@@ -262,7 +262,7 @@
       "bikeId": 6,
       "start": 1661585400000,
       "end": 1661589000000,
-      "status": "booked",
+      "status": "cancelled",
       "id": 21
     },
     {

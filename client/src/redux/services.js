@@ -15,17 +15,14 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['Users']
     }),
-    getUser: builder.query({
-      query: email => `/users?email=${email}`,
-      providesTags: ['User'],
-      transformResponse: ([response]) => {
-        if(response) delete response.password;
-        return response;
-      }
-    }),
-    getAllUsers: builder.query({
-      query: () => "/users",
-      providesTags: ['Users']
+    getUsers: builder.query({
+      query: ({queryBy, value} = {queryBy: undefined, value: undefined}) => {
+        let url = `/users`;
+        if(!queryBy || !value) return url;
+        else if(queryBy === 'id') return `${url}/${value}`;
+        else return `${url}?${queryBy}=${value}`
+      },
+      providesTags: ['User']
     }),
     signUp: builder.mutation({
       query: data => ({
@@ -122,8 +119,7 @@ export const brApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
   useLoginMutation,
-  useGetAllUsersQuery,
-  useGetUserQuery,
+  useGetUsersQuery,
   useSignUpMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
