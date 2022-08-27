@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { useUpdateBikeMutation, useDeleteBikeMutation } from 'redux/services';
 import commonSlice from 'redux/slices/common';
+import { AVAILABLE } from 'constants';
 
 const BikesList = props => {
     const [bikesList, setBikesList] = useState([])
@@ -52,7 +53,7 @@ const BikesList = props => {
     const handleRowChange = (e, idx) => {
         const { name, value } = e.target;
         const bikesClone = [...bikesList];
-        bikesClone[idx][name] = name === 'available' ? !!value : value;
+        bikesClone[idx][name] = name === 'available' ? parseInt(value) : value;
         setBikesList(bikesClone);
     }
 
@@ -110,8 +111,8 @@ const BikesList = props => {
                                     disabled={!isEditing}
                                     onChange={(e) => handleRowChange(e, idx)}
                                 >
-                                    <option value={true} >Yes</option>
-                                    <option value={false} >No</option>
+                                    <option value={AVAILABLE.yes} >Yes</option>
+                                    <option value={AVAILABLE.no} >No</option>
                                 </select>
                             </td>
 

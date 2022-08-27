@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ManagerMenu from './ManagerMenu';
 import UserMenu from './UserMenu';
 import { useNavigate, Link } from "react-router-dom";
-import { roles } from "constants";
+import { ROLES } from "constants";
 
 const Header = props => {
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Header = props => {
                 <UserMenu />
             </div>
             <div className="d-flex justify-content-between align-items-center">
-                {userInfo?.role === roles.manager && <><ManagerMenu /> |</>}
+                {userInfo?.role === ROLES.manager && <><ManagerMenu /> |</>}
                 <Link className="mx-1" to={`/profile/`} >Profile</Link> |
                 <Button className="mx-1" onClick={handleLogout}>Logout</Button>
             </div>

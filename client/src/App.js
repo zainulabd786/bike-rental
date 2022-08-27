@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import userSlice from 'redux/slices/user';
 import jwt_decode from "jwt-decode";
 import { useGetUserQuery } from 'redux/services'
-import { roles } from 'constants';
+import { ROLES } from 'constants';
 
 import PrivateRoute from './components/PrivateRoute';
 import Home from 'components/Home';
@@ -68,7 +68,7 @@ function App() {
             <Route path="/book/:id" element={<Book />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
-          <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === roles.manager: userInfo} />} > {/** Manager Routes */}
+          <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === ROLES.manager: userInfo} />} > {/** Manager Routes */}
               <Route path="/manage/users" element={<Users/>} />
               <Route path="/manage/bikes" element={<Bikes/>} />
               <Route path="/manage/bookings" element={<Bookings/>} />

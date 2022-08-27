@@ -7,7 +7,7 @@ import {
 import { Button } from '@mui/material';
 import commonSlice from 'redux/slices/common';
 import { useDispatch } from 'react-redux';
-import { roles } from 'constants';
+import { ROLES } from 'constants';
 
 const UsersList = props => {
     const [usersList, setUsersList] = useState([]);
@@ -90,8 +90,8 @@ const UsersList = props => {
                                     onChange={(e) => handleRowChange(e, idx)} 
                                     disabled={!isEditing} 
                                 >
-                                    <option value={roles.user} >User</option>
-                                    <option value={roles.manager} >Manager</option>
+                                    <option value={ROLES.user} >User</option>
+                                    <option value={ROLES.manager} >Manager</option>
                                 </select>
                             </td>
                             <td>

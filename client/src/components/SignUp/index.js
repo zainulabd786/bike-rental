@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import commonSlice from 'redux/slices/common';
 import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
-import { roles } from 'constants';
+import { ROLES } from 'constants';
 
 
 const SignUp = props => {
@@ -86,8 +86,8 @@ const SignUp = props => {
                         value={inputVals.role}
                     >
                         <option value="">Select role</option>
-                        <option value={roles.user}>User</option>
-                        <option value={roles.manager}>Manager</option>
+                        <option value={ROLES.user}>User</option>
+                        <option value={ROLES.manager}>Manager</option>
                     </select>
                 }
                 <TextField

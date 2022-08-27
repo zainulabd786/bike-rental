@@ -3,13 +3,14 @@ import { TextField, Button } from '@mui/material';
 import { useAddBikeMutation } from 'redux/services';
 import commonSlice from 'redux/slices/common';
 import { useDispatch } from 'react-redux';
+import { AVAILABLE } from 'constants';
 
 const AddBikes = props => {
     const defaultInputVals = useMemo(() => ({
         model: '',
         color: '',
         location: '',
-        available: true
+        available: AVAILABLE.yes
     }), []);
     const dispatch = useDispatch();
     const [inputVals, setInputVals] = useState(defaultInputVals);
