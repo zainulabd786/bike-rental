@@ -2,15 +2,15 @@
   "users": [
     {
       "email": "zainulabd786@gmail.com",
-      "password": "$2a$10$cVLu4qXinyEo9KKZ7eyA5ORmL/rqdxSKm3hgEtd5od/21LJYCqa5e",
-      "name": "Zainul Abideen",
+      "password": "$2a$10$nWBMQwOkasmZWENi/E3bD.BobUzBq2A.6AxiNiunsH465FTtHXJEK",
+      "name": "Zainul Abd",
       "id": 1,
       "role": 0
     },
     {
       "email": "waeez@gmail.com",
-      "password": "$2a$10$LStyCxqQFlGaXavsZNQZqO3s/j9S7jlnY9yBFtnRpTjaX3FE7Inz6",
-      "name": "Waeez A",
+      "password": "$2a$10$H7.KjewRl823R5Yjs07El.xdA1fvevTyz6Ddwvq53A2ZzIvHvEoSK",
+      "name": "Waeez Azeem",
       "id": 2,
       "role": 1
     },
@@ -56,44 +56,13 @@
   ],
   "bookings": [
     {
-      "id": 1,
-      "title": "Booked",
-      "start": 1659412800000,
-      "end": 1659416400000,
-      "userId": 1,
-      "bikeId": 5
-    },
-    {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 5,
-      "start": 1661599800000,
-      "end": 1661603400000,
-      "id": 6
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 5,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "id": 7
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 5,
-      "start": 1661589000000,
-      "end": 1661592600000,
-      "id": 8
-    },
-    {
-      "title": "Booked",
-      "userId": 2,
-      "bikeId": 5,
-      "start": 1661571000000,
-      "end": 1661574600000,
-      "id": 9
+      "bikeId": 4,
+      "start": 1661578200000,
+      "end": 1661581800000,
+      "status": "cancelled",
+      "id": 1
     }
   ],
   "ratings": [

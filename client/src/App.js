@@ -18,8 +18,9 @@ import Home from 'components/Home';
 import Login from 'components/Login';
 import Header from 'components/Header';
 import SignUp from 'components/SignUp';
-import { Users, Bikes, Bookings } from 'components/Manage';
 import Book from 'components/Book';
+import Profile from 'components/Profile';
+import { Users, Bikes, Bookings } from 'components/Manage';
 
 
 
@@ -64,7 +65,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route element={<PrivateRoute isAllowed={loggedIn} />}>
             <Route path="/" element={<Home />} />
-            <Route path="book/:id" element={<Book />} />
+            <Route path="/book/:id" element={<Book />} />
+            <Route path="/profile" element={<Profile />} />
           </Route>
           <Route element={<PrivateRoute redirectPath="/" isAllowed={userInfo ? userInfo.role === roles.manager: userInfo} />} > {/** Manager Routes */}
               <Route path="/manage/users" element={<Users/>} />

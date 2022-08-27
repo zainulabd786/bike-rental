@@ -30,7 +30,7 @@ const Book = props => {
 
     useEffect(() => {
         if (getBookingsQueryResults.isSuccess && getBookingsQueryResults.data) {
-            setBookings(getBookingsQueryResults.data)
+            setBookings(getBookingsQueryResults.data.filter(({status}) => status === "booked"));
         }
     }, [getBookingsQueryResults]);
 
@@ -41,7 +41,8 @@ const Book = props => {
             userId: userInfo?.id,
             bikeId: parseInt(id),
             start: new Date(start).valueOf(),
-            end: new Date(end).valueOf()
+            end: new Date(end).valueOf(),
+            status: 'booked'
         }
         await addBooking(payload);
         return event;
