@@ -42,7 +42,8 @@ const Book = props => {
             bikeId: parseInt(id),
             start: new Date(start).valueOf(),
             end: new Date(end).valueOf(),
-            status: 'booked'
+            status: 'booked',
+            rating: 0
         }
         await addBooking(payload);
         return event;

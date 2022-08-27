@@ -82,7 +82,12 @@ export const brApi = createApi({
       providesTags: ['Bikes']
     }),
     getBookings: builder.query({
-      query: ({queryBy, value}) => `/bookings?${queryBy}=${value}`,
+      query: ({queryBy, value} = {queryBy: undefined, value: undefined}) => {
+        let url = `/bookings`;
+        if(!queryBy || !value) return url;
+        else if(queryBy === 'id') return `${url}/${value}`;
+        else return `${url}?${queryBy}=${value}`
+      },
       providesTags: ['Bookings']
     }),
     addBooking: builder.mutation({
@@ -101,6 +106,15 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['Bookings']
     }),
+    getBikeRating: builder.query({
+      query: bikeId => `/bookings?bikeId=${bikeId}`,
+      providesTags: ['Bikes', 'Bookings'],
+      transformResponse: (response) => {
+        response = response.filter(({ rating }) => rating)
+        const rating = response.reduce((prev, curr) => prev + curr.rating, 0) / response.length;
+        return rating;
+      }
+    })
   }),
 })
 
@@ -120,5 +134,6 @@ export const {
   useGetBikeQuery,
   useGetBookingsQuery,
   useAddBookingMutation,
-  useUpdateBookingMutation
+  useUpdateBookingMutation,
+  useGetBikeRatingQuery
 } = brApi

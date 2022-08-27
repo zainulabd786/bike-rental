@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { useUpdateBikeMutation, useDeleteBikeMutation } from 'redux/services';
 import commonSlice from 'redux/slices/common';
 import { AVAILABLE } from 'constants';
+import { Rating } from 'components/Shared';
 
 const BikesList = props => {
     const [bikesList, setBikesList] = useState([])
@@ -116,7 +117,7 @@ const BikesList = props => {
                                 </select>
                             </td>
 
-                            <td>{rating}</td>
+                            <td><Rating bikeId={id} /></td>
 
                             <td>
                                 <Button size='small' variant={isEditing ? 'outlined' : 'text'} onClick={() => handleEditRow(!isEditing, idx)}>

@@ -1,7 +1,11 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useGetBookingsQuery, useGetAllBikesQuery, useUpdateBookingMutation } from "redux/services";
-import { Button } from "@mui/material";
+import { 
+    useGetBookingsQuery, 
+    useGetAllBikesQuery, 
+    useUpdateBookingMutation 
+} from "redux/services";
+import { Button, Rating } from "@mui/material";
 import commonSlice from 'redux/slices/common';
 
 const Bookings = props => {
@@ -36,7 +40,13 @@ const Bookings = props => {
         const bookingsClone = JSON.parse(JSON.stringify(bookings));
         bookingsClone[idx].status = 'cancelled';
         updateBooking(bookingsClone[idx]);
-    }, [bookings, updateBooking])
+    }, [bookings, updateBooking]);
+
+    const handleRateChange = useCallback((value, idx) => {
+        const bookingsClone = JSON.parse(JSON.stringify(bookings));
+        bookingsClone[idx].rating = value;
+        updateBooking(bookingsClone[idx]);
+    }, [bookings, updateBooking]);
 
     return <div>
         <div className="text-danger">
@@ -56,12 +66,12 @@ const Bookings = props => {
             </thead>
             <tbody>
                 {
-                    bookings.map(({ id, start, end, bikeId, status }, idx) => {
+                    bookings.map(({ id, start, end, bikeId, status, rating = 0 }, idx) => {
                         let from = new Date(start);
-                        from = `${from.getDay()}/${from.getMonth() + 1}/${from.getFullYear()} 
+                        from = `${from.getDate()}/${from.getMonth() + 1}/${from.getFullYear()} 
                                 - ${from.getHours()}:${from.getMinutes()}`
                         let to = new Date(end);
-                        to = `${to.getDay()}/${to.getMonth() + 1}/${to.getFullYear()} 
+                        to = `${to.getDate()}/${to.getMonth() + 1}/${to.getFullYear()} 
                                 - ${to.getHours()}:${to.getMinutes()}`
                         const bike = getAllBikesQueryResults.data?.find(({ id }) => id === bikeId);
                         return <tr key={id}>
@@ -70,7 +80,13 @@ const Bookings = props => {
                             <td>{to}</td>
                             <td>{bike?.model}</td>
                             <td>{status}</td>
-                            <td></td>
+                            <td>
+                                <Rating 
+                                    name="rating" 
+                                    onChange={(e, newValue) => handleRateChange(newValue, idx)} 
+                                    value={rating} 
+                                />
+                            </td>
                             <td>
                                 <Button
                                     disabled={status === 'cancelled'}

@@ -1,4 +1,4 @@
-import {Card, Button} from '@mui/material/';
+import { Card, Button } from '@mui/material/';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -6,15 +6,15 @@ import CardActions from '@mui/material/CardActions';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { green } from '@mui/material/colors';
+import { Rating } from 'components/Shared';
 
 
 export default function BikeCard({
-  model, 
-  color, 
-  location, 
-  id, 
-  available, 
-  rating, 
+  model,
+  color,
+  location,
+  id,
+  available,
   handleBookClick
 }) {
   return (
@@ -40,8 +40,8 @@ export default function BikeCard({
         </Typography>
       </CardContent>
       <CardActions className='justify-content-between' disableSpacing>
-        <Typography>Rating: {rating}</Typography>
-        <Button onClick={() => handleBookClick(id)} disabled={!available}>Book</Button> 
+        <Rating bikeId={id} />
+        <Button onClick={() => handleBookClick(id)} disabled={!available}>Book</Button>
       </CardActions>
     </Card>
   );
