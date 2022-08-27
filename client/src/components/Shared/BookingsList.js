@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { 
     useGetBookingsQuery, 
-    useGetAllBikesQuery, 
+    useGetBikesQuery, 
     useUpdateBookingMutation 
 } from "redux/services";
 import { Button, Rating } from "@mui/material";
@@ -24,7 +24,7 @@ const Bookings = props => {
         skip: getAll ? false : !userInfo?.id
     });
     const [updateBooking, updateBookingMutationResults] = useUpdateBookingMutation();
-    const getAllBikesQueryResults = useGetAllBikesQuery();
+    const getAllBikesQueryResults = useGetBikesQuery();
 
     useEffect(() => {
         if (getBookingsQueryResults.isSuccess && getBookingsQueryResults.data) {

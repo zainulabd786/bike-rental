@@ -55,10 +55,6 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['Bikes']
     }),
-    getAllBikes: builder.query({
-      query: () => "/bikes",
-      providesTags: ['Bikes']
-    }),
     updateBike: builder.mutation({
       query: data => ({
         url: `/bikes/${data.id}`,
@@ -74,8 +70,22 @@ export const brApi = createApi({
       }),
       invalidatesTags: ['Bikes']
     }),
-    getBike: builder.query({
-      query: id => `/bikes/${id}`,
+    getBikes: builder.query({
+      query: ({queryBy, value} = {queryBy: undefined, value: undefined}) => {
+        let url = `/bikes`;
+        if(!queryBy || !value) return url;
+        else if(queryBy === 'id') return `${url}/${value}`;
+        
+        if(typeof queryBy === 'object'){
+          url = url+'?';
+          url = queryBy.reduce((prev, curr, idx) => {
+            return `${prev}${curr}=${value[idx]}&`
+          },url);
+          
+          return url;
+        }
+        return `${url}?${queryBy}=${value}`;
+      },
       providesTags: ['Bikes']
     }),
     getBookings: builder.query({
@@ -124,10 +134,9 @@ export const {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useAddBikeMutation,
-  useGetAllBikesQuery,
   useUpdateBikeMutation,
   useDeleteBikeMutation,
-  useGetBikeQuery,
+  useGetBikesQuery,
   useGetBookingsQuery,
   useAddBookingMutation,
   useUpdateBookingMutation,

@@ -1,7 +1,7 @@
 import { memo, useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import {
-    useGetBikeQuery,
+    useGetBikesQuery,
     useGetBookingsQuery,
     useAddBookingMutation
 } from 'redux/services';
@@ -15,7 +15,10 @@ const Book = props => {
     const { userInfo } = useSelector(state => state.user) || {};
     const [bookings, setBookings] = useState([]);
 
-    const getBikeQueryResults = useGetBikeQuery(id);
+    const getBikeQueryResults = useGetBikesQuery({
+        queryBy: 'id',
+        value: id
+    });
     const getBookingsQueryResults = useGetBookingsQuery({ queryBy: 'bikeId', value: id });
     const [addBooking, addBookingMutationResponse] = useAddBookingMutation();
 

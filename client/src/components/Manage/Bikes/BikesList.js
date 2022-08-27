@@ -1,5 +1,5 @@
 import { memo, useState, useCallback, useEffect } from 'react';
-import { useGetAllBikesQuery } from 'redux/services';
+import { useGetBikesQuery } from 'redux/services';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { useUpdateBikeMutation, useDeleteBikeMutation } from 'redux/services';
@@ -9,7 +9,7 @@ import { Rating } from 'components/Shared';
 
 const BikesList = props => {
     const [bikesList, setBikesList] = useState([])
-    const getAllBikesQueryResults = useGetAllBikesQuery();
+    const getAllBikesQueryResults = useGetBikesQuery();
     const [updateBike, updateBikeMutationResults] = useUpdateBikeMutation();
     const [deleteBike, deleteBikeMutationResults] = useDeleteBikeMutation();
     const dispatch = useDispatch();
