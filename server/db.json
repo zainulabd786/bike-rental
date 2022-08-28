@@ -145,6 +145,36 @@
       "status": "booked",
       "rating": 3,
       "id": 7
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 4,
+      "start": 1661052600000,
+      "end": 1661081400000,
+      "status": "booked",
+      "rating": 5,
+      "id": 8
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 6,
+      "start": 1660534200000,
+      "end": 1660563000000,
+      "status": "booked",
+      "rating": 4,
+      "id": 9
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 6,
+      "start": 1660620600000,
+      "end": 1660649400000,
+      "status": "booked",
+      "rating": 4,
+      "id": 10
     }
   ],
   "ratings": []

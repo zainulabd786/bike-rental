@@ -115,30 +115,30 @@ const Filters = props => {
             <Grid item xs={2}>
                 <TextField
                     className='w-100'
-                    name="model"
+                    name="model_like"
                     label="Model"
                     size='small'
-                    value={inputVals.model || ""}
+                    value={inputVals.model_like || ""}
                     onChange={handleChange}
                 />
             </Grid>
             <Grid item xs={2}>
                 <TextField
                     className='w-100'
-                    name="color"
+                    name="color_like"
                     label="Color"
                     size='small'
-                    value={inputVals.color || ""}
+                    value={inputVals.color_like || ""}
                     onChange={handleChange}
                 />
             </Grid>
             <Grid item xs={2}>
                 <TextField
                     className='w-100'
-                    name="location"
+                    name="location_like"
                     label="Location"
                     size='small'
-                    value={inputVals.location || ""}
+                    value={inputVals.location_like || ""}
                     onChange={handleChange}
                 />
             </Grid>
