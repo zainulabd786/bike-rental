@@ -1,9 +1,9 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { 
-    useGetBookingsQuery, 
-    useGetBikesQuery, 
-    useUpdateBookingMutation 
+import {
+    useGetBookingsQuery,
+    useGetBikesQuery,
+    useUpdateBookingMutation
 } from "redux/services";
 import { Button, Rating } from "@mui/material";
 import commonSlice from 'redux/slices/common';
@@ -17,10 +17,11 @@ const Bookings = props => {
     const dispatch = useDispatch();
     const { userInfo } = useSelector(state => state.user) || {};
     const [bookings, setBookings] = useState([]);
+    const [bookingFilter, setBookingFilter] = useState('All');
     const getBookingsQueryResults = useGetBookingsQuery(getAll ? undefined : {
         queryBy: 'userId',
         value: userInfo?.id
-    } , {
+    }, {
         skip: getAll ? false : !userInfo?.id
     });
     const [updateBooking, updateBookingMutationResults] = useUpdateBookingMutation();
@@ -41,6 +42,18 @@ const Bookings = props => {
         }
     }, [updateBookingMutationResults, dispatch]);
 
+    useEffect(() => {
+        if (getBookingsQueryResults.isSuccess && bookingFilter) {
+            if (bookingFilter === "All") {
+                setBookings(getBookingsQueryResults?.data || []);
+            } else if (bookingFilter === "Upcoming") {
+                setBookings(getBookingsQueryResults.data?.filter(({ start }) => start > new Date().valueOf()));
+            } else if (bookingFilter === "Past") {
+                setBookings(getBookingsQueryResults.data?.filter(({ end }) => end < new Date().valueOf()));
+            }
+        }
+    }, [bookingFilter, getBookingsQueryResults])
+
     const handleCancelBooking = useCallback((idx) => {
         const bookingsClone = JSON.parse(JSON.stringify(bookings));
         bookingsClone[idx].status = 'cancelled';
@@ -53,9 +66,27 @@ const Bookings = props => {
         updateBooking(bookingsClone[idx]);
     }, [bookings, updateBooking]);
 
+    const handleFilterChange = useCallback((e) => {
+        const { value } = e.target;
+        setBookingFilter(value)
+
+    }, []);
+
     return <div>
         <div className="text-danger">
             {getBookingsQueryResults.isError && getBookingsQueryResults.error?.data}
+        </div>
+        <div>
+            <label htmlFor="bookings-filter">Filter Bookings</label>
+            <select
+                id="bookings-filter"
+                onChange={handleFilterChange}
+                value={bookingFilter}
+            >
+                <option>All</option>
+                <option>Upcoming</option>
+                <option>Past</option>
+            </select>
         </div>
         <table className="w-100">
             <thead>
@@ -66,7 +97,7 @@ const Bookings = props => {
                     <th>Bike</th>
                     {getAll && <th>User</th>}
                     <th>Booking Status</th>
-                    <th>Rate</th>
+                    <th>User Ratings</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -80,24 +111,25 @@ const Bookings = props => {
                         to = `${to.getDate()}/${to.getMonth() + 1}/${to.getFullYear()} 
                                 - ${to.getHours()}:${to.getMinutes()}`
                         const bike = getAllBikesQueryResults.data?.find(({ id }) => id === bikeId);
+                        const isUpcoming = start > new Date().valueOf();
                         return <tr key={id}>
                             <td>{id}</td>
                             <td>{from}</td>
                             <td>{to}</td>
                             <td>{bike?.model}</td>
-                            {getAll &&<td><UserDetails id={userId} /></td>}
+                            {getAll && <td><UserDetails id={userId} /></td>}
                             <td>{status}</td>
                             <td>
-                                <Rating 
-                                    name="rating" 
-                                    onChange={(e, newValue) => handleRateChange(newValue, idx)} 
-                                    value={rating} 
-                                    readOnly={disableRate}
+                                <Rating
+                                    name="rating"
+                                    onChange={(e, newValue) => handleRateChange(newValue, idx)}
+                                    value={rating}
+                                    readOnly={disableRate || isUpcoming}
                                 />
                             </td>
                             <td>
                                 <Button
-                                    disabled={status === 'cancelled'}
+                                    disabled={status === 'cancelled' || !isUpcoming}
                                     onClick={() => handleCancelBooking(idx)}
                                 >
                                     Cancel Booking

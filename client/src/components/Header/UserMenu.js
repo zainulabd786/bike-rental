@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const UserMenu = props => {
     return <nav className="m-0">
         <ul className="list-unstyled">
-            <li><Link to="/" >Book now</Link></li>
+            <li><Link to="/" >Home</Link></li>
         </ul>
     </nav>
 }

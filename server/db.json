@@ -83,7 +83,7 @@
       "start": 1661657400000,
       "end": 1661686200000,
       "status": "booked",
-      "rating": 0,
+      "rating": 5,
       "id": 1
     },
     {
@@ -93,7 +93,7 @@
       "start": 1661743800000,
       "end": 1661772600000,
       "status": "booked",
-      "rating": 0,
+      "rating": 3,
       "id": 2
     },
     {
@@ -113,7 +113,7 @@
       "start": 1660966200000,
       "end": 1660995000000,
       "status": "booked",
-      "rating": 0,
+      "rating": 3,
       "id": 4
     },
     {
