@@ -69,7 +69,7 @@ const Book = props => {
                 {/** condition to pass the latest instance of handleCreateBooking with user data*/}
                 {userInfo && bookings && 
                     <Scheduler
-                        view="day"
+                        view="month"
                         onConfirm={handleCreateBooking}
                         selectedDate={new Date()}
                         events={bookings.map(({ id, title, start, end }) => ({

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aldabil/react-scheduler": "react-scheduler-2.3.1.tgz",
+    "@aldabil/react-scheduler": "react-scheduler.tgz",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.2",
