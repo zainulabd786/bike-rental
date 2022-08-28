@@ -93,7 +93,16 @@ export const brApi = createApi({
         let url = `/bookings`;
         if(!queryBy || !value) return url;
         else if(queryBy === 'id') return `${url}/${value}`;
-        else return `${url}?${queryBy}=${value}`
+        
+        if(typeof queryBy === 'object'){
+          url = url+'?';
+          url = queryBy.reduce((prev, curr, idx) => {
+            return `${prev}${curr}=${value[idx]}&`
+          },url);
+          
+          return url;
+        }
+        return `${url}?${queryBy}=${value}`;
       },
       providesTags: ['Bookings']
     }),
@@ -118,7 +127,7 @@ export const brApi = createApi({
       providesTags: ['Bikes', 'Bookings'],
       transformResponse: (response) => {
         response = response.filter(({ rating }) => rating)
-        const rating = response.reduce((prev, curr) => prev + curr.rating, 0) / response.length;
+        const rating = Math.floor(response.reduce((prev, curr) => prev + curr.rating, 0) / response.length);
         return rating;
       }
     })

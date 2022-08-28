@@ -7,7 +7,7 @@ const BikeRating = ({bikeId}) => {
     
     return <div>
         <div className="text-danger">{isError && error.data}</div>
-        <Rating value={parseFloat(data)} precision={0.5} readOnly />
+        <Rating value={parseFloat(data)} readOnly />
     </div>
 }
 

@@ -78,297 +78,83 @@
   "bookings": [
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661571000000,
-      "end": 1661574600000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 4,
+      "start": 1661657400000,
+      "end": 1661686200000,
+      "status": "booked",
+      "rating": 0,
       "id": 1
     },
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 4,
+      "start": 1661743800000,
+      "end": 1661772600000,
+      "status": "booked",
+      "rating": 0,
       "id": 2
     },
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661578200000,
-      "end": 1661581800000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 4,
+      "start": 1661830200000,
+      "end": 1661859000000,
+      "status": "booked",
+      "rating": 0,
       "id": 3
     },
     {
       "title": "Booked",
-      "userId": 5,
+      "userId": 1,
       "bikeId": 7,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "status": "cancelled",
+      "start": 1660966200000,
+      "end": 1660995000000,
+      "status": "booked",
+      "rating": 0,
       "id": 4
     },
     {
       "title": "Booked",
-      "userId": 5,
+      "userId": 1,
       "bikeId": 7,
-      "start": 1661585400000,
-      "end": 1661589000000,
-      "status": "cancelled",
+      "start": 1661052600000,
+      "end": 1661081400000,
+      "status": "booked",
+      "rating": 0,
       "id": 5
     },
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661589000000,
-      "end": 1661592600000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 5,
+      "start": 1662867000000,
+      "end": 1662895800000,
+      "status": "booked",
+      "rating": 0,
       "id": 6
     },
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661592600000,
-      "end": 1661596200000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 5,
+      "start": 1662953400000,
+      "end": 1662982200000,
+      "status": "booked",
+      "rating": 0,
       "id": 7
     },
     {
       "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661596200000,
-      "end": 1661599800000,
-      "status": "cancelled",
+      "userId": 1,
+      "bikeId": 5,
+      "start": 1663039800000,
+      "end": 1663068600000,
+      "status": "booked",
+      "rating": 0,
       "id": 8
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 7,
-      "start": 1661599800000,
-      "end": 1661603400000,
-      "status": "cancelled",
-      "id": 9
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661571000000,
-      "end": 1661574600000,
-      "status": "cancelled",
-      "id": 10
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "cancelled",
-      "id": 11
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661578200000,
-      "end": 1661581800000,
-      "status": "cancelled",
-      "id": 12
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "status": "cancelled",
-      "id": 13
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661585400000,
-      "end": 1661589000000,
-      "status": "cancelled",
-      "id": 14
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661589000000,
-      "end": 1661592600000,
-      "status": "cancelled",
-      "id": 15
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 5,
-      "start": 1661592600000,
-      "end": 1661596200000,
-      "status": "cancelled",
-      "id": 16
-    },
-    {
-      "title": "Booked",
-      "userId": 4,
-      "bikeId": 6,
-      "start": 1661571000000,
-      "end": 1661574600000,
-      "status": "booked",
-      "id": 17
-    },
-    {
-      "title": "Booked",
-      "userId": 4,
-      "bikeId": 6,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "booked",
-      "id": 18
-    },
-    {
-      "title": "Booked",
-      "userId": 4,
-      "bikeId": 6,
-      "start": 1661578200000,
-      "end": 1661581800000,
-      "status": "booked",
-      "id": 19
-    },
-    {
-      "title": "Booked",
-      "userId": 4,
-      "bikeId": 6,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "status": "booked",
-      "id": 20
-    },
-    {
-      "title": "Booked",
-      "userId": 4,
-      "bikeId": 6,
-      "start": 1661585400000,
-      "end": 1661589000000,
-      "status": "cancelled",
-      "id": 21
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 8,
-      "start": 1661589000000,
-      "end": 1661592600000,
-      "status": "cancelled",
-      "id": 22
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 8,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "status": "cancelled",
-      "id": 23
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 8,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "cancelled",
-      "id": 24
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 8,
-      "start": 1661592600000,
-      "end": 1661596200000,
-      "status": "cancelled",
-      "id": 25
-    },
-    {
-      "title": "Booked",
-      "userId": 5,
-      "bikeId": 4,
-      "start": 1661581800000,
-      "end": 1661585400000,
-      "status": "booked",
-      "id": 26
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1661571000000,
-      "end": 1661574600000,
-      "status": "cancelled",
-      "id": 27,
-      "rating": 5
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "booked",
-      "rating": 2,
-      "id": 28
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 7,
-      "start": 1661574600000,
-      "end": 1661578200000,
-      "status": "booked",
-      "rating": 5,
-      "id": 29
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1659843000000,
-      "end": 1659871800000,
-      "status": "booked",
-      "rating": 0,
-      "id": 30
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1661657400000,
-      "end": 1661661000000,
-      "status": "booked",
-      "rating": 0,
-      "id": 31
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1661668200000,
-      "end": 1661671800000,
-      "status": "booked",
-      "rating": 0,
-      "id": 32
     }
   ],
   "ratings": [
