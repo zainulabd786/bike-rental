@@ -82,6 +82,7 @@ const Bookings = props => {
                 id="bookings-filter"
                 onChange={handleFilterChange}
                 value={bookingFilter}
+                className="mx-1"
             >
                 <option>All</option>
                 <option>Upcoming</option>
