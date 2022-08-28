@@ -36,14 +36,15 @@ const Filters = props => {
             if (inputValsClone[k]) {
                 delete inputValsClone[k];
                 let bikesDataGrouped = groupArrayOfObjects(getBookingsQuery.data, 'bikeId');
-                Object.keys(bikesDataGrouped).forEach(k => {
-                    const bikesWithRatings = bikesDataGrouped[k].filter(({ rating }) => !!rating);
-                    const upcomingBookings = bikesDataGrouped[k].filter(({ start }) => start >= new Date().valueOf());
-                    bikesDataGrouped[k] = {
-                        bikeId: parseInt(k),
+                Object.keys(bikesDataGrouped).forEach(key => {
+                    const bikesWithRatings = bikesDataGrouped[key].filter(({ rating }) => !!rating);
+                    const upcomingBookings = bikesDataGrouped[key].filter(
+                        ({ start, status }) => start >= new Date().valueOf() && status === "booked"
+                    );
+                    bikesDataGrouped[key] = {
+                        bikeId: parseInt(key),
                         rating: Math.floor(bikesWithRatings.reduce((prev, curr) => prev + curr.rating, 0) / bikesWithRatings.length),
-                        minDate: Math.min(...upcomingBookings.map(o => o.start)),
-                        maxDate: Math.max(...upcomingBookings.map(o => o.end))
+                        bookings: upcomingBookings.map(({ start, end }) => ({ start, end }))
                     }
                 });
                 if (
@@ -57,15 +58,26 @@ const Filters = props => {
                         const bikeIds = bikeRatings[inputVals.rating]?.map(({ bikeId }) => bikeId) || [];
                         setBikes(getBikesQuery.data?.filter(({ id }) => bikeIds.includes(id)) || [])
 
-                    } else if (k === "to") {
-                        if (inputVals[k] && inputVals.from) { //date range should be there
-                            const from = new Date(inputVals.from).valueOf();
-                            const to = new Date(inputVals.to).valueOf();
+                    } else if (k=== "from" || k === "to") {
+                        
+                        if (inputVals.to && inputVals.from) { //date range should be there
+                            const from = new Date(inputVals.from).setHours(0,0,0,0).valueOf();
+                            const to = new Date(inputVals.to).setHours(0,0,0,0).valueOf();
+                            
                             const unavailableBikesIds = Object.keys(bikesDataGrouped).filter(key => {
-                                return (from >= bikesDataGrouped[key].minDate && from <= bikesDataGrouped[key].maxDate) ||
-                                (bikesDataGrouped[key].minDate >= from && bikesDataGrouped[key].minDate <= to)
-                            }).map(bikeId => parseInt(bikeId))
-                            setBikes(getBikesQuery.data?.filter(({ id }) => !unavailableBikesIds.includes(id)) || [])
+                                const bookings = bikesDataGrouped[key].bookings;
+                                const isRangeBooked = bookings.some(({ start, end }, idx) => {
+                                    start = new Date(start).setHours(0,0,0,0).valueOf();
+                                    end = new Date(end).setHours(0,0,0,0).valueOf();
+                                    return start >= from && end <= to;
+                                });
+                                return isRangeBooked;
+                            }).map(bikeId => parseInt(bikeId));
+                            setBikes(
+                                getBikesQuery.data?.filter(
+                                    ({ id }) => !unavailableBikesIds.includes(id)
+                                ) || []
+                            )
                         }
                     }
                 }
@@ -73,7 +85,7 @@ const Filters = props => {
 
         });
         Object.keys(inputValsClone).forEach(k =>
-            (!inputValsClone[k] || inputValsClone[k].length < 4) && delete inputValsClone[k]
+            (!inputValsClone[k] || inputValsClone[k].length < 3) && delete inputValsClone[k]
         ); //delete empty values
         setBikeQueryData({
             queryBy: Object.keys(inputValsClone),

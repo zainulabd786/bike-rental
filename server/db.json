@@ -2,31 +2,17 @@
   "users": [
     {
       "email": "zainulabd786@gmail.com",
-      "password": "$2a$10$47bzrFuOxDJ.eN.AIeiMQOcZPLab7Tv/CcZsuwLyyr1LN377wCpxW",
+      "password": "$2a$10$RGYkdBg9AComQw5Aav2si.r4gUjzfMNlv0ZLZD/hBK0SmvR8p00na",
       "name": "Zainul Abd",
       "id": 1,
       "role": 0
     },
     {
-      "email": "lubna@gm.com",
-      "password": "$2a$10$6DL5iaujkbN2tkxhGf.XJebzqnJLzPPt5l5kHMQE81WRqF8IPcs3O",
-      "name": "lubna",
-      "role": 1,
-      "id": 3
-    },
-    {
       "email": "waeezazeem@gmail.com",
-      "password": "$2a$10$PfgZnnQWbKysT38zjToKLuXbQEapD4MxmnMccZp6VC7GAqvlFyAti",
+      "password": "$2a$10$08JXBED54aiwKnTwcjiL6OYfbuaPfNgutjZDGPCo4oTGaJV2xFQfq",
       "name": "Waeez",
       "role": 1,
-      "id": 4
-    },
-    {
-      "email": "wiseazim@outlook.com",
-      "password": "$2a$10$OPVpbpYbW5w7ygBTmQG70OZGJuvxe9k0yhtC10tdLT463xXcekAP2",
-      "name": "wise",
-      "role": 1,
-      "id": 5
+      "id": 3
     }
   ],
   "bikes": [
@@ -36,10 +22,10 @@
       "color": "Black",
       "location": "Saharanpur",
       "rating": 4.3,
-      "available": 0
+      "available": 1
     },
     {
-      "model": "Suzuki 1X",
+      "model": "Suzuki 500",
       "color": "Green",
       "location": "Delhi",
       "id": 4,
@@ -47,18 +33,11 @@
       "available": 1
     },
     {
-      "model": "Suzuki X1",
-      "color": "Blue",
-      "location": "Lucknow",
-      "id": 5,
-      "available": 1
-    },
-    {
       "model": "Honda XYZ",
       "color": "Green",
       "location": "Manali",
       "id": 6,
-      "available": 0
+      "available": 1
     },
     {
       "model": "Royal Enfield",
@@ -73,35 +52,49 @@
       "location": "Gurgaon",
       "available": 0,
       "id": 8
+    },
+    {
+      "model": "KTM",
+      "color": "Orange",
+      "location": "Saharanpur",
+      "available": 1,
+      "id": 9
+    },
+    {
+      "model": "Ninja",
+      "color": "Green",
+      "location": "Saharanpur",
+      "available": 1,
+      "id": 10
     }
   ],
   "bookings": [
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 4,
-      "start": 1661657400000,
-      "end": 1661686200000,
-      "status": "booked",
-      "rating": 5,
+      "bikeId": 9,
+      "start": 1662435000000,
+      "end": 1662463800000,
+      "status": "cancelled",
+      "rating": 0,
       "id": 1
     },
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 4,
-      "start": 1661743800000,
-      "end": 1661772600000,
-      "status": "booked",
-      "rating": 3,
+      "bikeId": 9,
+      "start": 1663039800000,
+      "end": 1663068600000,
+      "status": "cancelled",
+      "rating": 0,
       "id": 2
     },
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 4,
-      "start": 1661830200000,
-      "end": 1661859000000,
+      "bikeId": 9,
+      "start": 1663644600000,
+      "end": 1663673400000,
       "status": "booked",
       "rating": 0,
       "id": 3
@@ -109,19 +102,19 @@
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 7,
-      "start": 1660966200000,
-      "end": 1660995000000,
+      "bikeId": 9,
+      "start": 1664249400000,
+      "end": 1664278200000,
       "status": "booked",
-      "rating": 3,
+      "rating": 0,
       "id": 4
     },
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 7,
-      "start": 1661052600000,
-      "end": 1661081400000,
+      "bikeId": 9,
+      "start": 1663731000000,
+      "end": 1663759800000,
       "status": "booked",
       "rating": 0,
       "id": 5
@@ -129,61 +122,23 @@
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 5,
-      "start": 1662867000000,
-      "end": 1662895800000,
+      "bikeId": 9,
+      "start": 1660534200000,
+      "end": 1660563000000,
       "status": "booked",
-      "rating": 0,
+      "rating": 5,
       "id": 6
     },
     {
       "title": "Booked",
       "userId": 1,
-      "bikeId": 5,
-      "start": 1662953400000,
-      "end": 1662982200000,
+      "bikeId": 9,
+      "start": 1660447800000,
+      "end": 1660476600000,
       "status": "booked",
-      "rating": 0,
+      "rating": 4,
       "id": 7
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 5,
-      "start": 1663039800000,
-      "end": 1663068600000,
-      "status": "booked",
-      "rating": 0,
-      "id": 8
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 4,
-      "start": 1661916600000,
-      "end": 1661945400000,
-      "status": "booked",
-      "rating": 0,
-      "id": 9
-    },
-    {
-      "title": "Booked",
-      "userId": 1,
-      "bikeId": 5,
-      "start": 1661743800000,
-      "end": 1661772600000,
-      "status": "booked",
-      "rating": 0,
-      "id": 10
     }
   ],
-  "ratings": [
-    {
-      "bikeId": 4,
-      "userId": 1,
-      "rating": 4,
-      "bookingId": 27,
-      "id": 3
-    }
-  ]
+  "ratings": []
 }
