@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { TextField, Grid } from '@mui/material';
+import { TextField, Grid, Button } from '@mui/material';
 import { useGetBikesQuery, useGetBookingsQuery } from 'redux/services';
 
 function groupArrayOfObjects(list, key) {
@@ -27,7 +27,6 @@ const Filters = props => {
         if (getBikesQuery.isSuccess && getBikesQuery.data) {
             setBikes(getBikesQuery.data)
         }
-
     }, [getBikesQuery]);
 
     useEffect(() => {
@@ -103,6 +102,12 @@ const Filters = props => {
         setInputVals({ ...inputVals, [name]: value });
     }
 
+    const handleReset = useCallback(() => {
+        setInputVals({});
+        setBikeQueryData({ queryBy: [], value: [] });
+        if(getBikesQuery.isSuccess && getBikesQuery.data) setBikes(getBikesQuery.data);
+    },[getBikesQuery]);
+
     return <form onSubmit={handleSubmit} className="w-100 m-4">
         {getBikesQuery.isLoading && <div>Loading...</div>}
         {getBikesQuery.isError && <div className='text-danger'>{getBikesQuery.error.data}</div>}
@@ -113,7 +118,7 @@ const Filters = props => {
                     name="model"
                     label="Model"
                     size='small'
-                    value={inputVals.model}
+                    value={inputVals.model || ""}
                     onChange={handleChange}
                 />
             </Grid>
@@ -123,7 +128,7 @@ const Filters = props => {
                     name="color"
                     label="Color"
                     size='small'
-                    value={inputVals.color}
+                    value={inputVals.color || ""}
                     onChange={handleChange}
                 />
             </Grid>
@@ -133,7 +138,7 @@ const Filters = props => {
                     name="location"
                     label="Location"
                     size='small'
-                    value={inputVals.location}
+                    value={inputVals.location || ""}
                     onChange={handleChange}
                 />
             </Grid>
@@ -143,7 +148,7 @@ const Filters = props => {
                     className='p-2 w-100'
                     onChange={handleChange}
                     name="rating"
-                    value={inputVals.rating}
+                    value={inputVals.rating || ""}
                 >
                     <option value="">Select Rating</option>
                     <option>1</option>
@@ -162,6 +167,7 @@ const Filters = props => {
                             type="date"
                             name="from"
                             onChange={handleChange}
+                            value={inputVals.from || ""}
                             min={new Date().toISOString().split('T')[0]}
                         />
                         <input
@@ -169,18 +175,17 @@ const Filters = props => {
                             type="date"
                             name="to"
                             onChange={handleChange}
+                            value={inputVals.to || ""}
                             min={(inputVals.from ? new Date(inputVals.from) : new Date()).toISOString().split('T')[0]}
                         />
                     </div>
                 </div>
             </Grid>
+            <Grid item xs={2}>
+                <Button variant="outlined" onClick={handleReset}>Reset Filters</Button>
+            </Grid>
 
         </Grid>
-
-
-
-
-        {/* <Button type='submit' disabled={disabled} >Filter</Button> */}
     </form>
 }
 
