@@ -24,7 +24,7 @@ const UsersList = props => {
                 return {...userClone, isEditing: false};
             }))
         }
-    }, [data, isSuccess])
+    }, [data, isSuccess]);
 
     useEffect(() => {
         dispatch(commonSlice.actions.setLoading(updateUserMutationResults.isLoading))
@@ -64,7 +64,7 @@ const UsersList = props => {
 
     const handleDeleteUser = useCallback(idx => {
         deleteUser(usersList[idx].id);
-    },[usersList, deleteUser])
+    },[usersList, deleteUser]);
 
     return <div>
         {isError && <div className='text-danger'>{error.data}</div>}

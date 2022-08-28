@@ -22,7 +22,7 @@ export const brApi = createApi({
         else if(queryBy === 'id') return `${url}/${value}`;
         else return `${url}?${queryBy}=${value}`
       },
-      providesTags: ['User']
+      providesTags: ['Users']
     }),
     signUp: builder.mutation({
       query: data => ({
