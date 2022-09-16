@@ -1,10 +1,25 @@
 {
   "users": [
     {
-      "email": "zain@email.com",
-      "password": "$2a$10$cVLu4qXinyEo9KKZ7eyA5ORmL/rqdxSKm3hgEtd5od/21LJYCqa5e",
+      "email": "zainulabd786@gmail.com",
+      "password": "$2a$10$RGYkdBg9AComQw5Aav2si.r4gUjzfMNlv0ZLZD/hBK0SmvR8p00na",
+      "name": "Zainul Abd",
       "id": 1,
       "role": 0
+    },
+    {
+      "email": "waeezazeem@gmail.com",
+      "password": "$2a$10$08JXBED54aiwKnTwcjiL6OYfbuaPfNgutjZDGPCo4oTGaJV2xFQfq",
+      "name": "Waeez",
+      "role": 1,
+      "id": 3
+    },
+    {
+      "email": "lubnarasool0001@gmail.com",
+      "password": "$2a$10$2C3mWvahMEthTSI8nZF1GOJ5knFuBkI3WtZqE834COKGMfoxfbr52",
+      "name": "Lubna",
+      "role": 1,
+      "id": 4
     }
   ],
   "bikes": [
@@ -13,31 +28,154 @@
       "model": "Yamaha X100",
       "color": "Black",
       "location": "Saharanpur",
-      "Rating": "4.3",
-      "available": false
+      "rating": 4.3,
+      "available": 1
     },
     {
-      "model": "Yamaha X200",
-      "color": "Red",
-      "location": "Lucknow",
-      "Rating": "4",
-      "available": true,
-      "id": 2
+      "model": "Suzuki 500",
+      "color": "Green",
+      "location": "Delhi",
+      "id": 4,
+      "rating": 5,
+      "available": 1
+    },
+    {
+      "model": "Honda XYZ",
+      "color": "Green",
+      "location": "Manali",
+      "id": 6,
+      "available": 1
+    },
+    {
+      "model": "Royal Enfield",
+      "color": "White",
+      "location": "Delhi",
+      "available": 1,
+      "id": 7
+    },
+    {
+      "model": "Shese Bist",
+      "color": "Gold",
+      "location": "Gurgaon",
+      "available": 0,
+      "id": 8
+    },
+    {
+      "model": "KTM",
+      "color": "Orange",
+      "location": "Saharanpur",
+      "available": 1,
+      "id": 9
+    },
+    {
+      "model": "Ninja",
+      "color": "Green",
+      "location": "Saharanpur",
+      "available": 1,
+      "id": 10
     }
   ],
   "bookings": [
     {
-        "id": 1,
-        "bikeId": 2,
-        "start": 1661425200000,
-        "end": 1661493600000
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 6,
+      "start": 1663039800000,
+      "end": 1663068600000,
+      "status": "cancelled",
+      "rating": 0,
+      "id": 1
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 6,
+      "start": 1663644600000,
+      "end": 1663673400000,
+      "status": "booked",
+      "rating": 0,
+      "id": 2
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 6,
+      "start": 1664249400000,
+      "end": 1664278200000,
+      "status": "booked",
+      "rating": 0,
+      "id": 3
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 6,
+      "start": 1664335800000,
+      "end": 1664364600000,
+      "status": "booked",
+      "rating": 0,
+      "id": 4
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 6,
+      "start": 1663731000000,
+      "end": 1663759800000,
+      "status": "booked",
+      "rating": 0,
+      "id": 5
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 9,
+      "start": 1661657400000,
+      "end": 1661661000000,
+      "status": "booked",
+      "rating": 5,
+      "id": 6
+    },
+    {
+      "title": "Booked",
+      "userId": 4,
+      "bikeId": 9,
+      "start": 1661571000000,
+      "end": 1661599800000,
+      "status": "booked",
+      "rating": 3,
+      "id": 7
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 4,
+      "start": 1661052600000,
+      "end": 1661081400000,
+      "status": "booked",
+      "rating": 5,
+      "id": 8
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 6,
+      "start": 1660534200000,
+      "end": 1660563000000,
+      "status": "booked",
+      "rating": 4,
+      "id": 9
+    },
+    {
+      "title": "Booked",
+      "userId": 1,
+      "bikeId": 6,
+      "start": 1660620600000,
+      "end": 1660649400000,
+      "status": "booked",
+      "rating": 4,
+      "id": 10
     }
   ],
-  "ratings": [
-    {
-        "id": 1,
-        "bikeId": 1,
-        "userId": 1
-    }
-  ]
+  "ratings": []
 }
